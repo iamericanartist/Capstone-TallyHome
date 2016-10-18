@@ -24,7 +24,7 @@
     </a>
 </p>
 
-<p align="center"><sup><strong>Keep track of your homes milestones. Checkout <a href="http://??????/">TallyHome</a> | <a href="https://iamericanartist.com">IAmEricAnArtist</a></strong></sup></p>
+<p align="center"><strong>Keep track of your home's milestones. Checkout <a href="http://??????/">TallyHome</a> | <a href="https://iamericanartist.com">IAmEricAnArtist</a></strong></p>
 
 
 ***
