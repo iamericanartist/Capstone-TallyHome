@@ -24,33 +24,36 @@
     </a>
 </p>
 
-<p align="center"><sup><strong>An image server for legible and concise information. Our <a href="http://shields.io/">Homepage</a> | <a href="https://twitter.com/shields_io">Twitter</a></strong></sup></p>
+<p align="center"><sup><strong>Keep track of your homes milestones. Checkout <a href="http://??????/">TallyHome</a> | <a href="https://iamericanartist.com">IAmEricAnArtist</a></strong></sup></p>
 
 
 ***
 
 
 ## PROPOSAL
-### OweSki - “...so you KnowSki”
-When two people go to lunch, get beers, buy a soda, etc., and one of the people buys and says “you get the next one”: OweSki is a way for both parties to track who owes whom. 
-### OweSki Snapshot
-OweSki is basically a “who’s turn is it?” tracker. 
-Someone bought lunch? +1 to buyer / -1 to beneficiary
+### TallyHome - Catalog your home improvements/milestones
+Many times throughout my home-ownership history I would think to myself (or an insurance adjuster!) something to the effect of: “When did I update the roof again? Who installed it? What kind of shingles did we get again? How long is the warranty good for?” and would throw my hands in the air and throw a nearly random year number out there. I thought to myself, wouldn’t it be nice to have a way to keep track of things like this?  
+This was the catalyst for **TallyHome**.
 
-### NOTES
-- OweSki is an idea I’ve had for a while now. A best friend and I have had a “mental” OweSki going for a while, and I’ve always intended to make it an application at some point; why not now?
-- I see this as a phone app eventually, but functionally it could/should work just as well as a web app (make it responsive!) 
+### TallyHome Snapshot
+-   TallyHome is basically a diary of milestones for your residence.
+-   Use it to track known and best-guess milestones:
+    -   Moved in. New Refridgerator. New Roof. Previous owners replaced pipes. Flooded basement. Child moved to 2nd floor. Got Google Fiber. Etcetera.
+-   Attach helpful documentation for future use: 
+    -   Total cost, receipts, warranty, insurance information, appliance life-cycle expectancy, applicable images of milestone
+
+
 
 ## REQUIREMENTS
-1. Must have the ability to register a user in Firebase
-1. Must have the ability to log in
-1. You must be able to add OweSkis
-1. You must use Firebase to store credits/dollar amounts
-1. You must be able to add categories
-1. You must be able to remove categories
-1. Each OweSki must have the following properties
-   1. tokenId
-   1. positive value for one user and opposite for the other
-   1. A boolean value that, if true, means that user has the positive or negative token value
-1. It must be written with Angular
-1. For the layout, should probably use Bootstrap
+1. TK
+1. TK
+1. TK
+
+## STRETCH GOALS
+1. Rate your service/appliance/provider
+1. Ability to pass on your homes dataset to new owners
+1. Multiple contributors for a property
+1. Amortization status / depreciation value
+1. Warranty countdown (3 months left on washer warranty)
+1. Link to Contact information (Yelp, AngiesList, etc)
+1. Tagging and searching
