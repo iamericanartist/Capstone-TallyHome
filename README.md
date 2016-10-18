@@ -3,29 +3,27 @@
 
 ### [NSS](http://nashvillesoftwareschool.com/) Cohort D14 / Instructor - [Scott Humphries](https://github.com/sscotth) / Advisors - [Caitlin Stein](https://github.com/C-Stein) & [Callan Morrison](https://github.com/morecallan)
 
-![TallyHomeScreencap](img/TallyHomeScreencap.jpg?raw=true "TallyHome Screencap")
+<!-- ![TallyHomeScreencap](img/TallyHomeScreencap.jpg?raw=true "TallyHome Screencap") -->
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iamericanartist/Capstone-TallyHome/master/LICENSE)
+<!-- [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iamericanartist/Capstone-TallyHome/master/LICENSE) -->
 
+<!-- [![GitHub stars](https://img.shields.io/github/stars/iamericanartist/Capstone-TallyHome.svg)](https://github.com/iamericanartist/Capstone-TallyHome/stargazers) -->
 
 <p align="center">
-    <img src="https://rawgit.com/badges/shields/master/logo.svg"
-         height="130">
-</p>
-<p align="center">
-    <a href="https://www.gratipay.com/Shields/">
-        <img src="https://img.shields.io/gratipay/team/shields.svg"
-             alt="Gratipay">
+    <a href="https://github.com/iamericanartist/Capstone-TallyHome/stargazers">
+        <img src="https://img.shields.io/github/stars/iamericanartist/Capstone-TallyHome.svg"
+             alt="GitHub Stars">
     </a>
-    <a href="https://npmjs.org/package/gh-badges">
-        <img src="https://img.shields.io/npm/v/gh-badges.svg"
-             alt="npm version">
+    <a href="https://raw.githubusercontent.com/iamericanartist/Capstone-TallyHome/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg"
+             alt="MIT License">
     </a>
-    <a href="https://travis-ci.org/badges/shields">
-        <img src="https://img.shields.io/travis/badges/shields.svg"
-             alt="build status">
+    <a href="https://github.com/iamericanartist/Capstone-Oweski">
+        <img src="https://img.shields.io/badge/Oweskis-0-orange.svg"
+             alt="Oweskis owed - ZERO">
     </a>
 </p>
+
 <p align="center"><sup><strong>An image server for legible and concise information. Our <a href="http://shields.io/">Homepage</a> | <a href="https://twitter.com/shields_io">Twitter</a></strong></sup></p>
 
 
