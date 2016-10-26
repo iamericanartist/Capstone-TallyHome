@@ -1,7 +1,12 @@
 "use strict"
 
 angular
-  .module("todoApp", [])
-  .controller("main", function ($scope) {
-    $scope.title = "TallyHome Angular"
+  .module("tallyHome", [])
+  .controller("main", function ($scope, $http) {          //add $http
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>                       //destructured from "data"
+        $scope.title = title                              //rather than "data.data.title"
+      )
   })
+
