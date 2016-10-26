@@ -6,6 +6,10 @@ const app = express()                                                 //initiali
 const PORT = process.env.PORT || 3000                                 //set up ports
 
 
-app.use(express.static('client'))                                     //express base directory is the ROOT, not the folder where the server is - established in package.JSON
+app.use(express.static("client"))                                     //express base directory is the ROOT, not the folder where the server is - established in package.JSON
+
+app.get("/api/title", (req, res) =>
+  res.json({ title: "TallyHome / Angular / Bootstrap" })              //use objects here NOT STRINGS 
+)
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))     //server/server.js console.log()
