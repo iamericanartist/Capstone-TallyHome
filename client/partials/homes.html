@@ -1,17 +1,28 @@
 <h1>Get Started with your own!</h1>
 <h1>{{title}}</h1>
-<form action="">
+<!-- <form action="">
   <input type="text" />
   <input type="submit" />
-</form>
-<hr />
+</form> -->
 
 <ul>
-  <li ng-repeat="home in homes">                          <!-- //see server.js: app.get("/api/homes" ({homes:[array]}) -->
-    {{home.homeName}}: {{home.moveIn}}                    
+  <li ng-repeat="home in homes">
+    {{home.homeEvent}}                    
   </li>
+
+  <!-- <li ng-repeat="home in homes">                     //see server.js: app.get("/api/homes" ({homes:[array]})
+    {{home.homeName}}: {{home.moveIn}} -->
+
   <!-- <li>House1: Old Times</li>                         //was hardcoded at first
   <li>House2: New Times</li>                              //was hard coded at first --> 
+
 </ul>
+
+<hr />
+
+<form ng-submit="sendHome()">                             <!-- from main.js "HomeCtrl" -->
+  <input type="text" ng-model="homeEvent" placeholder="Got new roof"/>
+  <input type="submit"/>
+</form>
 
 <a class="btn btn-primary" href="/#/">Back to Main</a>

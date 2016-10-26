@@ -18,15 +18,37 @@ angular
   )
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
+  //MainCtrl - main.html - only needs "title"
   .controller("MainCtrl", function ($scope, $http) {      //add $http
+    //MAIN GET
     $http
-      .get("/api/title")
+      .get("/api/title")                                  //app title
       .then(({ data: { title }}) =>                       //destructured from "data"
         $scope.title = title                              //rather than "data.data.title"
       )
   })
 
+
+  //HomeCtrl - homes.html - needs "title" and "data"
   .controller("HomeCtrl", function ($scope, $http) {
+    $scope.sendHome = () => {
+      
+      const home =  {
+        homeEvent: $scope.homeEvent,
+      }
+      //HOMES POST
+      $http
+      .post("/api/homes", home)
+      .then(() => $scope.homes.push(home))
+      .catch(console.error)
+    }
+    //HOMES GETS
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+
     $http
       .get("/api/homes")
       .then(({ data: { homes }}) =>
