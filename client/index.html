@@ -12,14 +12,17 @@
     <div ng-app="tallyHome">
       <div class="container">
         
-        <div ng-controller="main">
+        <div ng-view></div>                               <!-- ANGULAR OUTPUTS HERE -->
+
+        <!-- <div ng-controller="main">
           <h1>{{title}}</h1>
-        </div>
+        </div> -->
 
       </div>
     </div>
     
     <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/app/main.js"></script>
     
   </body>
