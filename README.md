@@ -3,12 +3,6 @@
 
 ### [NSS](http://nashvillesoftwareschool.com/) Cohort D14 / Instructor - [Scott Humphries](https://github.com/sscotth) / Advisors - [Caitlin Stein](https://github.com/C-Stein) & [Callan Morrison](https://github.com/morecallan)
 
-<!-- ![TallyHomeScreencap](img/TallyHomeScreencap.jpg?raw=true "TallyHome Screencap") -->
-
-<!-- [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iamericanartist/Capstone-TallyHome/master/LICENSE) -->
-
-<!-- [![GitHub stars](https://img.shields.io/github/stars/iamericanartist/Capstone-TallyHome.svg)](https://github.com/iamericanartist/Capstone-TallyHome/stargazers) -->
-
 <p align="center">
     <a href="https://github.com/iamericanartist/Capstone-TallyHome/stargazers">
         <img src="https://img.shields.io/github/stars/iamericanartist/Capstone-TallyHome.svg"

@@ -1,0 +1,23 @@
+{
+  "name": "tallyhome",
+  "version": "1.0.0",
+  "description": "TallyHome is basically a diary of milestones for your residence.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamericanartist/Capstone-TallyHome.git"
+  },
+  "author": "Eric Denton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamericanartist/Capstone-TallyHome/issues"
+  },
+  "homepage": "https://github.com/iamericanartist/Capstone-TallyHome#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
