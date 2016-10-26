@@ -1,0 +1,20 @@
+{
+  "name": "tallyhome",
+  "description": "TallyHome is basically a diary of milestones for your residence.",
+  "main": "server/server.js",
+  "authors": [
+    "Eric Denton"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/iamericanartist/Capstone-TallyHome",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

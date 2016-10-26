@@ -19,5 +19,8 @@
   "homepage": "https://github.com/iamericanartist/Capstone-TallyHome#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9"
   }
 }
