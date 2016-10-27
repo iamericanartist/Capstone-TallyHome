@@ -18,8 +18,7 @@ angular
   )
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
-  //MainCtrl - main.html - only needs "title"
-  .controller("MainCtrl", function ($scope, $http) {      //add $http
+  .controller("MainCtrl", function ($scope, $http) {      //add $http   //MainCtrl - main.html - only needs "title"
     //MAIN GET
     $http
       .get("/api/title")                                  //app title
@@ -28,9 +27,8 @@ angular
       )
   })
 
+  .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
 
-  //HomeCtrl - homes.html - needs "title" and "data"
-  .controller("HomeCtrl", function ($scope, $http) {
     $scope.sendHome = () => {
       
       const home =  {

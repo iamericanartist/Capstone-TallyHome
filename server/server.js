@@ -15,15 +15,14 @@ app.use(express.static("client"))                                     //express 
 app.use(json())
 
 app.get("/api/title", (req, res) =>                                   //setting title here
-  res.json({ title: "TallyHome / Angular / Bootstrap" })              //use objects here NOT STRINGS  
+  res.json({ title: "TallyHome / Ang / Boot / Exp / Mgoose" })        //use objects here NOT STRINGS  
 )
 
 
 ////////////////////////////////////  MODEL  ////////////////////////////////////
-const Home = mongoose.model('home', {
+const Home = mongoose.model("home", {
   homeName: String,
-  moveIn: String,
-
+  moveIn: String
 }) 
 
 app.get("/api/homes", (req, res, err) =>
@@ -33,25 +32,6 @@ app.get("/api/homes", (req, res, err) =>
     .catch(err)
 )
 
-// replace hard coded messages:
-// app.get("/api/homes", (req, res) =>
-//   res.json({
-//     homes: [
-//       {
-//         homeName: "MyHouse1",
-//         moveIn: "November 20, 2016",
-//       },
-//       {
-//         homeName: "MyHouse2",
-//         moveIn: "Sept 10, 2010",
-//       },
-//       {
-//         homeName: "MyHouse3",
-//         moveIn: "4/4/92",
-//       },
-//     ],  //use objects here NOT STRINGS
-//   })
-// )
 
 app.post("/api/homes", (req, res, err) => {
   const home = req.body
