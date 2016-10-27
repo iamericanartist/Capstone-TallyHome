@@ -21,8 +21,10 @@ app.get("/api/title", (req, res) =>                                   //setting 
 
 ////////////////////////////////////  MODEL  ////////////////////////////////////
 const Home = mongoose.model("home", {
+  userId: String,
   homeName: String,
-  moveIn: String
+  moveIn: String,
+  homeEvent: String
 }) 
 
 app.get("/api/homes", (req, res, err) =>
@@ -34,15 +36,18 @@ app.get("/api/homes", (req, res, err) =>
 
 
 app.post("/api/homes", (req, res, err) => {
-  const home = req.body
+  const newHomeObj = req.body
   Home
-    .create(home)
-    .then(home => res.json(home))
+    .create(newHomeObj)
+    .then(response => {res.json(response)
+      console.log("~~~~response~~~", response);
+    })
     .catch(err)
+    console.log("~~~~Home~~~~", newHomeObj)
 })
 
 
-mongoose.promise = Promise
+mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () =>
   app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))     //server/server.js console.log()
 )
