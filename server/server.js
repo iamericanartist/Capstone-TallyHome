@@ -2,7 +2,7 @@
 
 const { json } = require("body-parser")                               //returns middleware that only parses json
 const express = require("express")                                    //pull Express in
-const mongoose = require("mongoose");                                 //pull Mongoose in
+const mongoose = require("mongoose")                                  //pull Mongoose in
 
 const app = express()                                                 //initialize Express
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb://localhost:27017/tallyhome"
@@ -20,6 +20,19 @@ app.get("/api/title", (req, res) =>                                   //setting 
 
 
 ////////////////////////////////////  MODEL  ////////////////////////////////////
+
+const User = mongoose.model("user", {
+  email: String,
+  password: String,
+  homes: [String],    
+  info: {
+    id: String,
+    name: String,
+    about: String,
+    picture: String
+  } 
+})
+
 const Home = mongoose.model("home", {
   userId: String,
   homeName: String,
@@ -27,10 +40,12 @@ const Home = mongoose.model("home", {
   homeEvent: String
 }) 
 
+
+
 app.get("/api/homes", (req, res, err) =>
   Home
     .find()
-    .then(homes => res.json({ homes }))
+    .then(homes => res.status(201).json({ homes }))
     .catch(err)
 )
 
@@ -40,11 +55,20 @@ app.post("/api/homes", (req, res, err) => {
   Home
     .create(newHomeObj)
     .then(response => {res.json(response)
-      console.log("~~~~response~~~", response);
+      console.log("~~~~req.body~~~~", req.body)
+      console.log("~~~~response~~~~", response)
     })
     .catch(err)
-    console.log("~~~~Home~~~~", newHomeObj)
+    console.log("~~This Home~~", newHomeObj)
 })
+
+///////////////////////////////  ERROR HANDLING  ///////////////////////////////
+app.use("/api", (req, res) =>
+  res.status(404).send({ code: 404, status: "Not Found" })
+)
+app.use((err, req, res, next) =>
+  res.status(500).send({ code: 500, status: "Internal Server Error", detail: err.stack })
+)
 
 
 mongoose.Promise = Promise
