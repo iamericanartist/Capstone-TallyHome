@@ -3,41 +3,45 @@
 
 <ul>
   <li ng-repeat="home in homes">
-      <md-card>
-        <md-card-header>
-          <md-card-avatar>
-            <img class="md-user-avatar" src="img/100-2.jpeg"/>
-          </md-card-avatar>
-          <md-card-header-text>
-            <span class="md-title">User</span>
-            <span class="md-subhead">subhead</span>
-          </md-card-header-text>
-        </md-card-header>
-        <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">In-card mixed actions</span>
-            <span class="md-subhead">Reversed</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="start center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-          <md-card-icon-actions>
-            <md-button class="md-icon-button" aria-label="toggle">
-              <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-            </md-button>
-          </md-card-icon-actions>
-        </md-card-actions>
+
+<!--     <div ng-controller="AppCtrl" ng-cloak >
+      <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline"> {{home.homeEvent}} </span>
+                <span class="md-subhead">Large</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-lg card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Action 1</md-button>
+              <md-button>Action 2</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
+    </div> -->
+
   <!-- angular card here to capture home -->
-    {{home.homeEvent}}                    
+    {{home}}                  
   </li>
 </ul>
 
 <hr />
+  <!-- userId: String,
+  homeName: String,
+  moveIn: String,
+  homeEvent: String -->
+
 
 <form ng-submit="sendHome()">                             <!-- from main.js "HomeCtrl" -->
   <input type="text" ng-model="homeEvent" placeholder="Got new roof"/>
+  <input type="text" ng-model="homeEvent" placeholder="Got new roof"/>
+  <!-- <input type="text" ng-model="homeEvent" placeholder="Got new roof"/> -->
   <input type="submit"/>
 </form>
 
