@@ -1,2 +1,10 @@
 .card-media {
   background-color: #999999; }
+
+.loginBox {
+  background-color: rgba(150, 230, 200, 0.5);
+}
+
+.registerBox {
+  background-color: rgba(250, 180, 150, 0.5);
+}

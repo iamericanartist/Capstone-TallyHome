@@ -18,30 +18,47 @@ app.get("/api/title", (req, res) =>                                   //setting 
   res.json({ title: "TallyHome / Ang / Boot / Exp / Mgoose" })        //use objects here NOT STRINGS  
 )
 
+app.locals.errors = {}
+app.locals.body = {}
+app.locals.company = "TallyHome"
+console.log("~~app.locals~~", app.locals)
 
-////////////////////////////////////  MODEL  ////////////////////////////////////
 
+
+///////////////////////////////////  MODELS  ///////////////////////////////////
 const User = mongoose.model("user", {
-  email: String,
-  password: String,
-  homes: [String],    
+  email: {
+    type: String,
+    lowercase: true,
+    required: true,
+    // add when ready to use
+    // const HTML5_EMAIL_VALIDATION = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    // match: [HTML5_EMAIL_VALIDATION, "Please enter valid email address"],
+    index: { unique: true }
+  },
+  pass: {
+    type: String,
+    required: true,
+  },
   info: {
-    id: String,
     name: String,
     about: String,
     picture: String
-  } 
+  },
+  homes: [mongoose.Schema.Types.ObjectId]
 })
 
 const Home = mongoose.model("home", {
   userId: String,
   homeName: String,
   moveIn: String,
-  homeEvent: String
+  homeEvent: [Object]
 }) 
 
 
 
+
+//////////////////////////////////  GETS/POSTS  //////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
     .find()
@@ -75,3 +92,5 @@ mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () =>
   app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))     //server/server.js console.log()
 )
+mongoose.disconnect = () => mongoose.disconnect()
+
