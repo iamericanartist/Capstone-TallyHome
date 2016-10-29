@@ -11,9 +11,24 @@ angular
         templateUrl: "partials/main.html",                //and show "main.html" partial
       })
 
+      .when("/login", {
+        controller: "LoginCtrl",
+        templateUrl: "partials/login.html",
+      })
+
+      .when("/register", {
+        controller: "RegisterCtrl",
+        templateUrl: "partials/register.html",
+      })
+
       .when("/homes", {
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
+      })
+      
+      .when("/logout", {
+        controller: "LogoutCtrl",
+        templateUrl: "partials/logout.html",
       })
   )
 

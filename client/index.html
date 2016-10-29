@@ -5,22 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TallyHome</title>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
   
     <div ng-app="tallyHome">
-      <div class="container">
-        
-        <div ng-view></div>                               <!-- ANGULAR OUTPUTS HERE -->
 
-        <!-- <div ng-controller="main">
-          <h1>{{title}}</h1>
-        </div> -->
-
+      <!-- ////////////////////////////  NAVBAR  //////////////////////////// -->
+      <div class="navbar navbar-default">
+        <div class="container">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/">Splash</a></li>
+              <li><a href="#/login">Login</a></li>
+              <li><a href="#/register">Register</a></li>
+              <li><a href="#/homes">My TallyHome</a></li>
+              <li><a href="#/">Not logged in</a></li>
+              <li><a href="#/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <!-- ////////////////////////  ANGULAR OUTPUT  //////////////////////// -->
+      <div class="container">
+        <div ng-view></div>
+      </div>
+
     </div>
     
+    <!-- ////////////////////////////  SCRIPTS  //////////////////////////// -->
     <script src="/lib/angular/angular.min.js"></script>
     <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/app/main.js"></script>
