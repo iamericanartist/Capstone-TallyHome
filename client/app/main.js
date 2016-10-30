@@ -5,7 +5,7 @@ angular
 
   .config($routeProvider =>
     $routeProvider
-///////////////////////////////////  ROUTES  ///////////////////////////////////
+    //////////////////////////////  ROUTE PARAMS  //////////////////////////////
       .when("/", {                                        //when at "/"
         controller: "MainCtrl",                           //use "MainCtrl" controller (below)
         templateUrl: "partials/main.html",                //and show "main.html" partial
@@ -30,25 +30,55 @@ angular
         controller: "LogoutCtrl",
         templateUrl: "partials/logout.html",
       })
+      .otherwise ({
+        redirectTo: "/"
+      })
   )
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
-  .controller("MainCtrl", function ($scope, $http) {      //add $http   //MainCtrl - main.html - only needs "title"
-    //MAIN GET
+  ///////////////////////////  MainCtrl  ///////////////////////////
+  .controller("MainCtrl", function ($scope, $http) {        //MainCtrl - main.html - only needs "title"
+    $scope.welcome = "Tally Ho there!"
     $http
-      .get("/api/title")                                  //app title
-      .then(({ data: { title }}) =>                       //destructured from "data"
-        $scope.title = title                              //rather than "data.data.title"
+      .get("/api/title")                                    //app title
+      .then(({ data: { title }}) =>                         //destructured from "data"
+        $scope.title = title                                //rather than "data.data.title"
       )
+      console.log("MAIN VIEW")
   })
 
 
-  .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
+  ///////////////////////////  LoginCtrl  ///////////////////////////
+  .controller("LoginCtrl", function ($scope, $http) {
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+      console.log("LOGIN VIEW")
+  })
 
+
+  ///////////////////////////  RegisterCtrl  ///////////////////////////
+  .controller("RegisterCtrl", function ($scope, $http) {
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+      console.log("REGISTER VIEW")
+  })
+
+
+
+  ///////////////////////////  HomeCtrl  ///////////////////////////
+  .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
     $scope.sendHome = () => {
-      
       const home =  {
-        homeEvent: $scope.homeEvent,
+        userId: $scope.userId,
+        homeName: $scope.homeName,
+        moveIn: $scope.moveIn,
+        homeEvent: $scope.homeEvent
       }
       //HOMES POST
       $http
@@ -68,23 +98,17 @@ angular
       .then(({ data: { homes }}) =>
         $scope.homes = homes
       )
+      console.log("HOME VIEW")
   })
 
 
+  ///////////////////////////  LogoutCtrl  ///////////////////////////
+  .controller("LogoutCtrl", function ($scope, $http) {
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+      console.log("LOGOUT VIEW")
+  })
 
-
-
-
-// // When ready to cardify?
-// // https://material.angularjs.org/latest/demo/card
-// angular.module('cardDemo1', ['ngMaterial'])
-
-// .controller('AppCtrl', function($scope) {
-//   $scope.imagePath = 'img/washedout.png';
-// })
-// .config(function($mdThemingProvider) {
-//   $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-//   $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-//   $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-//   $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
-// });

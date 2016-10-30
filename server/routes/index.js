@@ -68,9 +68,4 @@ router.post("/homes", (req, res, err) => {
 })
 
 
-
-
-
-
-
 module.exports = router
