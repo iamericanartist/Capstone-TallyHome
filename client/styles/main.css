@@ -1,3 +1,10 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .card-media {
   background-color: #999999; }
 
@@ -7,4 +14,21 @@
 
 .registerBox {
   background-color: rgba(250, 180, 150, 0.5);
+}
+
+.subduedText {
+  color: #999999;
+}
+
+.homeTextArea {
+  margin: 2.5%;
+  min-width: 45%;
+  max-height: 25%;
+  overflow: hidden;
+  padding: 5px 30px;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  list-style-type: none;
 }

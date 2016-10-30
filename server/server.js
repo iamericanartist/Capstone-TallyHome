@@ -1,6 +1,6 @@
 "use strict"
 
-const { json } = require("body-parser")                               //returns middleware that only parses json
+const { json, urlencoded } = require("body-parser")                               //returns middleware that only parses json
 const express = require("express")                                    //pull Express in
 const mongoose = require("mongoose")                                  //pull Mongoose in
 
@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 3000                                 //set up p
 /////////////////////////////////  Middleware  /////////////////////////////////
 app.use(express.static("client"))                                     //express base directory is the ROOT, not the folder where the server is - established in package.JSON
 app.use(json())
+
+app.use(urlencoded({extended: false}))
 
 app.get("/api/title", (req, res) =>                                   //setting title here
   res.json({ title: "TallyHome / Ang / Boot / Exp / Mgoose" })        //use objects here NOT STRINGS  
@@ -36,7 +38,7 @@ const User = mongoose.model("user", {
     // match: [HTML5_EMAIL_VALIDATION, "Please enter valid email address"],
     index: { unique: true }
   },
-  pass: {
+  password: {
     type: String,
     required: true,
   },
@@ -52,7 +54,8 @@ const Home = mongoose.model("home", {
   userId: String,
   homeName: String,
   moveIn: String,
-  homeEvent: [Object]
+  homeEvent: [],
+  eventDate: Date,
 }) 
 
 

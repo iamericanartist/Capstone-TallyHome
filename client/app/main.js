@@ -1,6 +1,13 @@
 "use strict"
 
 angular
+  .module("MyApp",["ngMaterial", "ngMessages", "material.svgAssetsCache"])
+  .controller("AppCtrl", function($scope) {
+    $scope.myDate = new Date();
+});
+
+
+angular
   .module("tallyHome", ["ngRoute"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
 
   .config($routeProvider =>
@@ -117,4 +124,4 @@ angular
       )
       console.log("LOGOUT VIEW")
   })
-  
+

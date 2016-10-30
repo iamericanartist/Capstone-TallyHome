@@ -3,15 +3,44 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TallyHome</title>
+
+    <link rel="shortcut icon" href="/TallyHomeFavicon.ico" type="image/x-icon">
+    <link rel="icon" href="/TallyHomeFavicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
   
     <div ng-app="tallyHome">
+
+      <!-- ////////////////////////////  NAVBAR  //////////////////////////// -->
+      <div class="navbar navbar-default">
+        <div class="container">
+          <div class="container-fluid">
+         <a class="navbar-brand" href="#">TallyHome</a>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/">Splash</a></li>
+              <li><a href="#/login">Login</a></li>
+              <li><a href="#/register">Register</a></li>
+              <li><a href="#/homes">My TallyHome</a></li>
+              <li><a href="#/">Not logged in</a></li>
+              <li><a href="#/logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ////////////////////////  ANGULAR OUTPUT  //////////////////////// -->
       <div class="container">
-        
+
+        <h1>TallyHome</h1>
+        <h4>A place to track your home milestones</h4>
         <div ng-view></div>                               <!-- ANGULAR OUTPUTS HERE -->
 
         <!-- <div ng-controller="main">
@@ -20,9 +49,14 @@
 
       </div>
     </div>
-    
+
+
+    <!-- ////////////////////////////  SCRIPTS  //////////////////////////// -->
     <script src="/lib/angular/angular.min.js"></script>
     <script src="/lib/angular-route/angular-route.min.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script> 
+    <script src="/node_modules/angular-animate/angular-animate.js"></script> 
+    <script src="/node_modules/angular-material/angular-material.js"></script> 
     <script src="/app/main.js"></script>
     
   </body>
