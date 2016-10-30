@@ -21,7 +21,7 @@ app.get("/api/title", (req, res) =>                                   //setting 
 app.locals.errors = {}
 app.locals.body = {}
 app.locals.company = "TallyHome"
-console.log("~~app.locals~~", app.locals)
+// console.log("~~app.locals~~", app.locals)
 
 
 
