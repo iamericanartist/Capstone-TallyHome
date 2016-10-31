@@ -21,7 +21,7 @@
 <hr/>
 <p align="center">
   <a href="https://tallyhomeapp.com">
-    <img src="/images/TallyHomeWEBShadow.png" alt="TallyHome Logo" height="80px">
+    <img src="/client/images/TallyHomeWEBShadow.png" alt="TallyHome Logo" height="150px">
   </a>
 </p>
 
