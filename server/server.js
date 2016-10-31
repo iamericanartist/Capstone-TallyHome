@@ -67,18 +67,44 @@ app.get("/api/homes", (req, res, err) =>
     .then(homes => res.status(201).json({ homes }))
     .catch(err)
 )
-
-
 app.post("/api/homes", (req, res, err) => {
   const newHomeObj = req.body
   Home
     .create(newHomeObj)
     .then(response => {res.json(response)
-      console.log("~~~~req.body~~~~", req.body)
-      console.log("~~~~response~~~~", response)
     })
     .catch(err)
     console.log("~~This Home~~", newHomeObj)
+})
+
+
+//////////////////////////////////  REGISTER  //////////////////////////////////
+app.post("/api/register", (req, res, err) => {
+  const newUserObj = req.body
+  User
+    .create(newUserObj)
+    .then(response => {res.json(response)
+    })
+    .catch(err)
+    // console.log("~~This User~~", newUserObj)
+})
+
+
+//////////////////////////////////  LOGIN  //////////////////////////////////
+app.post("/api/login", (req, res, err) => {
+  console.log("qwerty", req.body );
+  const userObj = req.body
+  User
+    .findOne({ email: userObj.email })
+    .then(response => {
+      if (response.password === userObj.password) { 
+        res.status(201).json({ user: response, message: "Successful Login!" })
+      } else {
+        res.json({message: "Issue with Email/Password"})
+      }
+    })
+    .catch(err)
+    // console.log("~~This User~~", userObj)
 })
 
 

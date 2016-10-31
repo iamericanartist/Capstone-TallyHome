@@ -4,7 +4,7 @@
     <div class="col-xs-offset-3 col-xs-6 loginBox">
       <h1>Login</h1>
 
-      <form method="POST" ng-submit="">   <!-- from main.js "LoginCtrl" -->
+      <form ng-submit="loginUser()">   <!-- from main.js "LoginCtrl" -->
         <div class="form-group">
           <label for="email">Email Address</label>
           <input id="email" type="email" name="email" ng-model="email" placeholder="you@example.com" required class="form-control">
@@ -16,6 +16,7 @@
         <div class="contact-form__submit">
           <a href="#/" class="btn btn-danger">Cancel</a>
           <input type="submit" value="Submit" class="btn btn-success">
+          <h4 ng-if="statusMessage">{{statusMessage}}</h4>
         </div>
       </form>
 
