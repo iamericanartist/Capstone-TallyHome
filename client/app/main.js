@@ -91,6 +91,7 @@ angular
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
         homeEvent: $scope.homeEvent,
+        eventDate: $scope.eventDate
       }
       //HOMES POST
       $http
