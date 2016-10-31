@@ -1,6 +1,6 @@
 "use strict"
 
-const { json, urlencoded } = require("body-parser")                               //returns middleware that only parses json
+const { json, urlencoded } = require("body-parser")                   //returns middleware that only parses json
 const express = require("express")                                    //pull Express in
 const mongoose = require("mongoose")                                  //pull Mongoose in
 
@@ -60,7 +60,6 @@ const Home = mongoose.model("home", {
 
 
 
-
 //////////////////////////////////  GETS/POSTS  //////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
@@ -81,6 +80,7 @@ app.post("/api/homes", (req, res, err) => {
     .catch(err)
     console.log("~~This Home~~", newHomeObj)
 })
+
 
 ///////////////////////////////  ERROR HANDLING  ///////////////////////////////
 app.use("/api", (req, res) =>

@@ -12,7 +12,7 @@ angular
 
   .config($routeProvider =>
     $routeProvider
-///////////////////////////////////  ROUTES  ///////////////////////////////////
+    //////////////////////////////  ROUTE PARAMS  //////////////////////////////
       .when("/", {                                        //when at "/"
         controller: "MainCtrl",                           //use "MainCtrl" controller (below)
         templateUrl: "partials/main.html",                //and show "main.html" partial
@@ -48,9 +48,9 @@ angular
   .controller("MainCtrl", function ($scope, $http) {      //add $http   //MainCtrl - main.html - only needs "title"
     //MAIN GET
     $http
-      .get("/api/title")                                  //app title
-      .then(({ data: { title }}) =>                       //destructured from "data"
-        $scope.title = title                              //rather than "data.data.title"
+      .get("/api/title")                                    //app title
+      .then(({ data: { title }}) =>                         //destructured from "data"
+        $scope.title = title                                //rather than "data.data.title"
       )
       console.log("MAIN VIEW")
   })
@@ -85,7 +85,7 @@ angular
   .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
 
     $scope.sendHome = () => {
-      
+
       const home =  {
         userId: $scope.userId,
         homeName: $scope.homeName,
