@@ -12,7 +12,7 @@ angular
 
   .config($routeProvider =>
     $routeProvider
-    //////////////////////////////  ROUTE PARAMS  //////////////////////////////
+    /////////////////////////////////  ROUTES   /////////////////////////////////
       .when("/", {                                        //when at "/"
         controller: "MainCtrl",                           //use "MainCtrl" controller (below)
         templateUrl: "partials/main.html",                //and show "main.html" partial
@@ -72,20 +72,26 @@ angular
 
 
   ///////////////////////////  RegisterCtrl  ///////////////////////////
-  .controller("RegisterCtrl", function ($scope, $http, $location) {
+  .controller("RegisterCtrl", function ($scope, $http) {
+  $scope.users = [] 
 
   $scope.registerUser = () => {
-
-    const newUser = {
-      email: $scope.email,
-      password: $scope.password
+      const newUser =  {
+        email: $scope.email,
+        password: $scope.password
       }
-
+      //HOMES POST
+      $http
+        .post("/api/users", newUser)
+        .then(() => $scope.users.push(newUser))
+        .catch(console.error)
+    }
+    //HOMES GETS
     $http
-      .post("/api/register", newUser)
-      .then($location.path("/login"))
-      .catch(console.error)
-  }
+      .get("/api/users")
+      .then(({ data: { users }}) =>
+        $scope.users = users
+      )
 
     $http
       .get("/api/title")
@@ -94,6 +100,30 @@ angular
       )
       console.log("REGISTER VIEW")
   })
+
+
+  //   const newUser = {
+  //     email: $scope.email,
+  //     password: $scope.password
+  //     }
+
+  //   $http
+  //     .post("/register", newUser)
+  //     .then(() => $scope.users.push(newUser))
+  //     .then($location.path("/login"))
+  //     .catch(console.error)
+  // }
+
+///////////////////////////  
+    // $scope.sendHome = () => {
+  ///////////////////////////
+  //   $http
+  //     .get("/api/title")
+  //     .then(({ data: { title }}) =>
+  //       $scope.title = title
+  //     )
+  //     console.log("REGISTER VIEW")
+  // })
 
 
 
