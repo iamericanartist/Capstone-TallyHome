@@ -14,40 +14,51 @@
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/main.css">
   </head>
-  <body>
-  
+
+  <body class="wide">
+
     <div ng-app="tallyHome">
 
+
       <!-- ////////////////////////////  NAVBAR  //////////////////////////// -->
-      <div class="navbar navbar-default">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+      <!-- <div class="navbar navbar-default navbar-fixed-top"> -->
         <div class="container">
-          <div class="container-fluid">
-         <a class="navbar-brand" href="#">TallyHome</a>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#/">Splash</a></li>
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">TallyHome</a>
+          </div>
+          
+          <div class="collapse navbar-collapse">                <!-- Left aligned NAV content -->
+            <ul class="nav navbar-nav">
               <li><a href="#/login">Login</a></li>
               <li><a href="#/register">Register</a></li>
               <li><a href="#/homes">My TallyHome</a></li>
-              <li><a href="#/">Not logged in</a></li>
               <li><a href="#/logout">Logout</a></li>
             </ul>
-          </div>
+
+            <ul class="nav navbar-nav navbar-right">            <!-- Right aligned NAV content -->
+              <li><a href="#/login">Username</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+
         </div>
       </div>
 
 
       <!-- ////////////////////////  ANGULAR OUTPUT  //////////////////////// -->
       <div class="container">
-
-        <h1>TallyHome</h1>
-        <h4>A place to track your home milestones</h4>
         <div ng-view></div>                               <!-- ANGULAR OUTPUTS HERE -->
-
         <!-- <div ng-controller="main">
           <h1>{{title}}</h1>
         </div> -->
-
       </div>
+
     </div>
 
 
