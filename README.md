@@ -18,8 +18,14 @@
     </a>
 </p>
 
-<p align="center"><strong>Keep track of your home's milestones. Checkout <a href="http://??????/">TallyHome</a> | <a href="https://iamericanartist.com">IAmEricAnArtist</a></strong></p>
+<hr/>
+<p align="center">
+  <a href="https://tallyhomeapp.com">
+    <img src="/images/TallyHomeWEBShadow.png" alt="TallyHome Logo" height="80px">
+  </a>
+</p>
 
+<h3 align="center"><strong>Keep track of your home's milestones. Checkout <a href="https://tallyhomeapp.com">TallyHome</a> | <a href="https://iamericanartist.github.io/">IAmEricAnArtist</a></strong></h3>
 
 ***
 

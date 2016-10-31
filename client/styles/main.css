@@ -26,6 +26,10 @@ body {
 
 
 /* HOME CARD STYLING */
+ul {
+  padding: 0px;
+}
+
 .homeTextArea {
     margin: 0.5% 1%;
     padding: 5px 30px;
@@ -33,7 +37,7 @@ body {
     min-width: 48%;
     border: 2px solid lightgrey;
     border-radius: 10px;
-    background-color: rgba(230, 230,230, .85);
+    background-color: rgba(230,230,230,.85);
     display: inline-block;
     overflow: hidden;
     text-decoration: none;
@@ -41,20 +45,44 @@ body {
 }
 .subduedText {
   color: #999999;
+
+}
+.newHomeTextArea {
+    margin: 0.5% 1%;
+    padding: 2rem;
+    min-width: 98%;
+    border: 1px solid rgba(120,120,120,.2);
+    border-radius: 10px;
+    background-color: rgba(226,225,225,.8);
+    display: inline-block;
+    /*overflow: hidden;*/
+    text-decoration: none;
+    list-style-type: none;
+}
+.newSubduedText {
+  color: #999999;
 }
 
 
 /* DEFAULT COLUMN STYLING // BE CAREFUL */
-[class*="col-"] {
+/*[class*="col-"] {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: rgba(86,61,124,.15);
   border: 1px solid rgba(86,61,124,.2);
   border-radius: 10px;
-}
+}*/
 .loginBox {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: rgba(150, 250, 180, 0.25);
+  border: 1px solid rgba(86,61,124,.2);
+  border-radius: 10px;
 }
 .registerBox {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: rgba(250, 180, 150, 0.25);
+  border: 1px solid rgba(86,61,124,.2);
+  border-radius: 10px;
 }
