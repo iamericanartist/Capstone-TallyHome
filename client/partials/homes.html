@@ -1,21 +1,44 @@
 
+<container class="container-fluid">
+  <div class="row-fluid">
+    
+  </div>
+</container>
 <h1>Welcome home!</h1>
 
-<ul>
-  <li ng-repeat="home in homes">
 
-  <!-- angular card here to capture home -->
-    {{home}}                  
+<ul>
+  <li class="homeTextArea" ng-repeat="home in homes">
+  <!-- card stuff here -->
+    <!-- <h5 class="subduedText">Home Name: </h5>  --><h2> {{home.homeName}}</h2>
+    <hr/>
+    <h5 class="subduedText">Move In Date: </h5> <h4> {{home.moveIn}}</h4> 
+    <h5 class="subduedText">Home Events: </h5> <h4> {{home.homeEvent}}</h4>
   </li>
 </ul>
-
-<hr />
 
 
 <form ng-submit="sendHome()">                             <!-- from main.js "HomeCtrl" -->
   Name your Home <input type="text" ng-model="homeName" placeholder="My First House / 123 Main St."/><br/>
-  What sort of Event?<input type="text" ng-model="homeEvent" placeholder="Got new roof"/> 
-  <input type="submit"/>
+  Move In Date <input type="text" ng-model="moveIn" placeholder="Jan 2016"/><br/>
+  What sort of Event? <input type="text" ng-model="homeEvent" placeholder="asdf"/><br/>
+  <!-- <md-datepicker ng-model="eventDate"></md-datepicker> -->
+  <input class="btn btn-success btn-xs" type="submit"/>
 </form>
 
+<br/>
+
 <a class="btn btn-primary" href="/#/">Back to Main</a>
+
+
+<!-- <div ng-controller="AppCtrl" ng-cloak="" class="datepickerdemoBasicUsage" ng-app="MyApp">
+  <md-content>
+    <div layout-gt-xs="row">
+      <div flex-gt-xs="">
+        <h4>Event Date</h4>
+        <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+      </div>
+     </div
+  </md-content>
+</div>
+ -->

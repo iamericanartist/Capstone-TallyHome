@@ -1,6 +1,13 @@
 "use strict"
 
 angular
+  .module("MyApp",["ngMaterial", "ngMessages", "material.svgAssetsCache"])
+  .controller("AppCtrl", function($scope) {
+    $scope.myDate = new Date();
+});
+
+
+angular
   .module("tallyHome", ["ngRoute"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
 
   .config($routeProvider =>
@@ -25,11 +32,12 @@ angular
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
       })
-      
+
       .when("/logout", {
         controller: "LogoutCtrl",
         templateUrl: "partials/logout.html",
       })
+
       .otherwise ({
         redirectTo: "/"
       })
@@ -37,8 +45,8 @@ angular
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
   ///////////////////////////  MainCtrl  ///////////////////////////
-  .controller("MainCtrl", function ($scope, $http) {        //MainCtrl - main.html - only needs "title"
-    $scope.welcome = "Tally Ho there!"
+  .controller("MainCtrl", function ($scope, $http) {      //add $http   //MainCtrl - main.html - only needs "title"
+    //MAIN GET
     $http
       .get("/api/title")                                    //app title
       .then(({ data: { title }}) =>                         //destructured from "data"
@@ -46,6 +54,7 @@ angular
       )
       console.log("MAIN VIEW")
   })
+
 
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
@@ -57,6 +66,7 @@ angular
       )
       console.log("LOGIN VIEW")
   })
+
 
 
   ///////////////////////////  RegisterCtrl  ///////////////////////////
@@ -73,12 +83,14 @@ angular
 
   ///////////////////////////  HomeCtrl  ///////////////////////////
   .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
+
     $scope.sendHome = () => {
+
       const home =  {
         userId: $scope.userId,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
-        homeEvent: $scope.homeEvent
+        homeEvent: $scope.homeEvent,
       }
       //HOMES POST
       $http
@@ -100,6 +112,7 @@ angular
       )
       console.log("HOME VIEW")
   })
+
 
 
   ///////////////////////////  LogoutCtrl  ///////////////////////////
