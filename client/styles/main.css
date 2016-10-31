@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-family: "Helvetica Neue",Arial,sans-serif;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -7,9 +8,21 @@ html {
 body,html {
   height: 100%;
 }
-body {
+/* padding for Fixed Navbar */
+body {              
   padding-top: 60px;
 }
+  
+h1 {font-size: 4.5vmax;}
+h2 {font-size: 4vmax;}
+h3 {font-size: 3.5vmax;}
+h4 {font-size: 3vmax;}
+h5 {font-size: 2.5vmax;}
+h6 {font-size: 2vmax;}
+p  {font-size: 1.5vmax;
+    line-height: 1.5;
+    letter-spacing: .8px;}
+
 
 
 /* BACKGROUND SYLING */
@@ -17,7 +30,7 @@ body {
   width:100%;
   height:100%;
   height:calc(100% - 1px);
-  background-image:url('https://github.com/nss-day-cohort-14/static-web-group-project-dos-teamlunchroom/blob/master/images/wall.jpg?raw=true');
+  background-image:url("https://github.com/nss-day-cohort-14/static-web-group-project-dos-teamlunchroom/blob/master/images/wall.jpg?raw=true");
   background-size:cover;
 }
 .wide img {
@@ -25,17 +38,23 @@ body {
 }
 
 
+.tallyLogo {
+  max-width: 70%;
+  margin: auto;
+ }
+
+
 /* HOME CARD STYLING */
 ul {
   padding: 0px;
 }
-
+/* NG-REPEAT CARDS */
 .homeTextArea {
     margin: 0.5% 1%;
     padding: 5px 30px;
     height: 250px;
-    min-width: 48%;
-    border: 2px solid lightgrey;
+    width: 48%;
+    border: 1px solid rgba(120,120,120,.2);
     border-radius: 10px;
     background-color: rgba(230,230,230,.85);
     display: inline-block;
@@ -45,7 +64,7 @@ ul {
 }
 .subduedText {
   color: #999999;
-
+  margin: 0px -5px -5px;
 }
 .newHomeTextArea {
     margin: 0.5% 1%;

@@ -59,18 +59,34 @@ angular
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
   .controller("LoginCtrl", function ($scope, $http) {
+
+    // LOGIN GETS
     $http
       .get("/api/title")
       .then(({ data: { title }}) =>
         $scope.title = title
       )
-      console.log("LOGIN VIEW")
+      console.log("LOGOUT VIEW")
   })
 
 
 
   ///////////////////////////  RegisterCtrl  ///////////////////////////
-  .controller("RegisterCtrl", function ($scope, $http) {
+  .controller("RegisterCtrl", function ($scope, $http, $location) {
+
+  $scope.registerUser = () => {
+
+    const newUser = {
+      email: $scope.email,
+      password: $scope.password
+      }
+
+    $http
+      .post("/api/register", newUser)
+      .then($location.path("/login"))
+      .catch(console.error)
+  }
+
     $http
       .get("/api/title")
       .then(({ data: { title }}) =>
@@ -95,9 +111,9 @@ angular
       }
       //HOMES POST
       $http
-      .post("/api/homes", home)
-      .then(() => $scope.homes.push(home))
-      .catch(console.error)
+        .post("/api/homes", home)
+        .then(() => $scope.homes.push(home))
+        .catch(console.error)
     }
     //HOMES GETS
     $http
