@@ -8,40 +8,37 @@
 
 
 angular
-  .module("tallyHome", ["ngRoute"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
+  .module("tallyHome", ["ngRoute","ngStorage"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
 
-  .config($routeProvider =>
+  .config(($routeProvider, $locationProvider) =>  {
+    $locationProvider.html5Mode(true)
+    $locationProvider.hashPrefix = "/"
     $routeProvider
     /////////////////////////////////  ANGULAR ROUTES  /////////////////////////////////
       .when("/", {                                        //when at "/"
         controller: "MainCtrl",                           //use "MainCtrl" controller (below)
         templateUrl: "partials/main.html",                //and show "main.html" partial
       })
-
       .when("/login", {
         controller: "LoginCtrl",
         templateUrl: "partials/login.html",
       })
-
       .when("/register", {
         controller: "RegisterCtrl",
         templateUrl: "partials/register.html",
       })
-
       .when("/homes", {
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
       })
-
       .when("/logout", {
         controller: "LogoutCtrl",
         templateUrl: "partials/logout.html",
       })
-
       .otherwise ({
         redirectTo: "/"
       })
-  )
+  })
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
   ///////////////////////////  MainCtrl  ///////////////////////////
@@ -58,7 +55,7 @@ angular
 
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
-  .controller("LoginCtrl", function ($scope, $http, $location) {
+  .controller("LoginCtrl", function ($scope, $http, $location, $localStorage, $sessionStorage) {
 
   $scope.loginUser = () => {
       const userLogin =  {
@@ -69,9 +66,8 @@ angular
       $http
         .post("/api/login", userLogin)
         .then((response) => {
-          console.log("asdf", response);
+          console.log("LOGIN RESPONSE", response);
           if (response.data.user) {
-
             $location.path("#/homes")            
           } else {
             $scope.statusMessage = response.data.message
