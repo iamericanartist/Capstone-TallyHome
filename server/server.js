@@ -9,7 +9,6 @@ const MONGODB_URL = process.env.MONGODB_URL || "mongodb://localhost:27017/tallyh
 const PORT = process.env.PORT || 3000                                 //set up ports
 
 
-
 /////////////////////////////////  Middleware  /////////////////////////////////
 app.use(express.static("client"))                                     //express base directory is the ROOT, not the folder where the server is - established in package.JSON
 app.use(json())
@@ -23,8 +22,6 @@ app.get("/api/title", (req, res) =>                                   //setting 
 app.locals.errors = {}
 app.locals.body = {}
 app.locals.company = "TallyHome"
-// console.log("~~app.locals~~", app.locals)
-
 
 
 ///////////////////////////////////  MODELS  ///////////////////////////////////
@@ -59,7 +56,6 @@ const Home = mongoose.model("home", {
 }) 
 
 
-
 //////////////////////////////////  GETS/POSTS  //////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
@@ -71,10 +67,19 @@ app.post("/api/homes", (req, res, err) => {
   const newHomeObj = req.body
   Home
     .create(newHomeObj)
-    .then(response => {res.json(response)
+    .then(response => {res.status(201).json(response)
     })
     .catch(err)
     console.log("~~This Home~~", newHomeObj)
+})
+app.delete("/api/homes/:id", (req, res, err) => {
+  const id = req.params.id
+  console.log("||SERVER REMOVE ID: ", id)
+  Home
+    .find({_id: id})
+    .remove({_id: id})
+    .then(() => res.status(204))
+    .catch(err)
 })
 
 

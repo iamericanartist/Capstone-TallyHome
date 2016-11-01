@@ -1,18 +1,11 @@
 "use strict"
 
-// angular
-//   .module("MyApp",["ngMaterial", "ngMessages", "material.svgAssetsCache"])
-//   .controller("AppCtrl", function($scope) {
-//     $scope.myDate = new Date();
-// });
-
-
 angular
-  .module("tallyHome", ["ngRoute","ngStorage"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
+  .module("tallyHome", ["ngRoute","ngStorage","ngMaterial"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
 
-  .config(($routeProvider, $locationProvider) =>  {
-    $locationProvider.html5Mode(true)
-    $locationProvider.hashPrefix = "/"
+  .config(($routeProvider) =>  {        //add ", $locationProvider" back to implement html5mode (also see index.html)
+    // $locationProvider.html5Mode(true)
+    // $locationProvider.hashPrefix = "/"
     $routeProvider
     /////////////////////////////////  ANGULAR ROUTES  /////////////////////////////////
       .when("/", {                                        //when at "/"
@@ -30,6 +23,10 @@ angular
       .when("/homes", {
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
+      })
+      .when("/editHome", {
+        controller: "EditHomeCtrl",
+        templateUrl: "partials/editHome.html",
       })
       .when("/logout", {
         controller: "LogoutCtrl",
@@ -116,7 +113,7 @@ angular
 
 
   ///////////////////////////  HomeCtrl  ///////////////////////////
-  .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
+  .controller("HomeCtrl", function ($scope, $http, $location) {      //HomeCtrl - homes.html - needs "title" and "data"
     $scope.homes = []
 
     $scope.sendHome = () => {
@@ -140,7 +137,41 @@ angular
         $scope.homes = homes
       )
       console.log("HOME VIEW")
+
+    $scope.removeHome = (id) => {
+      console.log("~MAIN.JS~ removeHome: ", id)
+      $http
+        .delete(`/api/homes/${id}`)
+        .then(reloadPage())
+    }
+
+    $scope.editHome = (id) => {
+      console.log("~MAIN.JS~ editHome: ", id)
+      $location.path(`/editHome/${id}`)
+    }
+
+
+    ///////////////////////////  RELOADPAGE FN  ///////////////////////////
+    function reloadPage() {
+      $http
+        .get("/api/homes")
+        .then(({ data: { homes }}) => $scope.homes = homes)
+      $scope.userId = ""
+      $scope.homeName = ""
+      $scope.moveIn = ""
+      $scope.homeEvent = ""
+      $scope.eventDat = ""
+    }
+    reloadPage()
   })
+
+
+
+
+
+
+
+
 
 
 
@@ -152,5 +183,17 @@ angular
         $scope.title = title
       )
       console.log("LOGOUT VIEW")
+  })
+
+
+
+  ///////////////////////////  EditHomeCtrl  ///////////////////////////
+  .controller("EditHomeCtrl", function ($scope, $http) {
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+      console.log("EDITHOME VIEW")
   })
 
