@@ -1,10 +1,10 @@
 "use strict"
 
-angular
-  .module("MyApp",["ngMaterial", "ngMessages", "material.svgAssetsCache"])
-  .controller("AppCtrl", function($scope) {
-    $scope.myDate = new Date();
-});
+// angular
+//   .module("MyApp",["ngMaterial", "ngMessages", "material.svgAssetsCache"])
+//   .controller("AppCtrl", function($scope) {
+//     $scope.myDate = new Date();
+// });
 
 
 angular
@@ -12,7 +12,7 @@ angular
 
   .config($routeProvider =>
     $routeProvider
-    //////////////////////////////  ROUTE PARAMS  //////////////////////////////
+    /////////////////////////////////  ANGULAR ROUTES  /////////////////////////////////
       .when("/", {                                        //when at "/"
         controller: "MainCtrl",                           //use "MainCtrl" controller (below)
         templateUrl: "partials/main.html",                //and show "main.html" partial
@@ -58,40 +58,62 @@ angular
 
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
-  .controller("LoginCtrl", function ($scope, $http) {
+  .controller("LoginCtrl", function ($scope, $http, $location) {
 
-    // LOGIN GETS
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("LOGOUT VIEW")
+  $scope.loginUser = () => {
+      const userLogin =  {
+        email: $scope.email,
+        password: $scope.password
+      }
+
+      $http
+        .post("/api/login", userLogin)
+        .then((response) => {
+          console.log("asdf", response);
+          if (response.data.user) {
+
+            $location.path("#/homes")            
+          } else {
+            $scope.statusMessage = response.data.message
+          }
+        })
+        .catch(console.error)
+    }
+      console.log("LOGIN VIEW")
   })
 
 
 
   ///////////////////////////  RegisterCtrl  ///////////////////////////
   .controller("RegisterCtrl", function ($scope, $http, $location) {
+  $scope.users = []
+  $scope.statusMessage = null
 
   $scope.registerUser = () => {
-
-    const newUser = {
-      email: $scope.email,
-      password: $scope.password
+    if ($scope.password === $scope.confirmation ) {
+      const newUser =  {
+        email: $scope.email,
+        password: $scope.password
       }
-
-    $http
-      .post("/api/register", newUser)
-      .then($location.path("/login"))
-      .catch(console.error)
-  }
-
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
+      //HOMES POST
+      $http
+        .post("/api/register", newUser)
+        .then((user) => {
+          if (user) {
+            $scope.users.push(newUser)
+            $location.path("#/login")            
+          }
+        })
+        .catch(console.error)
+      $scope.statusMessage = "Passwords match"
+        } 
+        else 
+        {
+          $scope.statusMessage = "Passwords do not match"
+          $scope.password = ""
+          $scope.confirmation = ""
+        }
+    }
       console.log("REGISTER VIEW")
   })
 
@@ -99,6 +121,7 @@ angular
 
   ///////////////////////////  HomeCtrl  ///////////////////////////
   .controller("HomeCtrl", function ($scope, $http) {      //HomeCtrl - homes.html - needs "title" and "data"
+    $scope.homes = []
 
     $scope.sendHome = () => {
 
@@ -109,18 +132,11 @@ angular
         homeEvent: $scope.homeEvent,
         eventDate: $scope.eventDate
       }
-      //HOMES POST
       $http
         .post("/api/homes", home)
         .then(() => $scope.homes.push(home))
         .catch(console.error)
     }
-    //HOMES GETS
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
 
     $http
       .get("/api/homes")
