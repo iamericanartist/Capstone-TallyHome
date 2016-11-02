@@ -197,12 +197,27 @@ angular
   })
 
   ///////////////////////////  NewEventCtrl  ///////////////////////////
-  .controller("NewEventCtrl", function ($scope, $http) {
+  .controller("NewEventCtrl", function ($scope, $http, $rootScope) {
+    $scope.homeEvent = []
+    $scope.addEvent = () => {
+      const newEvent = {
+        userId: $rootScope.userId,
+        homeName: $scope.homeName,
+        moveIn: $scope.moveIn,
+        homeEvent: $rootScope.homeEvent,                                        ///////////////////////////  This is an existing [array...]  ///////////////////////////
+        eventDate: $scope.eventDate,
+      }
+      $http
+        .post("/api/newEvent", newEvent)
+        .then(() => $scope.homeEvent.push(newEvent))
+        .catch(console.error)
+    }
+
     $http
       .get("/api/title")
       .then(({ data: { title }}) =>
         $scope.title = title
       )
-      console.log("EDITHOME VIEW")
+      console.log("NEWEVENT VIEW")
   })
 

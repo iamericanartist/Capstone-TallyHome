@@ -56,7 +56,7 @@ const Home = mongoose.model("home", {
 }) 
 
 
-//////////////////////////////////  GETS/POSTS  //////////////////////////////////
+/////////////////////////////////  GETS/POSTS  /////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
     .find()
@@ -81,6 +81,33 @@ app.delete("/api/homes/:id", (req, res, err) => {
     .then(() => res.status(204))
     .catch(err)
 })
+
+
+//////////////////////////////////  NEWEVENT  //////////////////////////////////
+app.get("/api/events", (req, res, err) =>
+  Event
+    .find()
+    .then(events => res.json({ events }))
+    .catch(err)
+)
+
+app.post("/api/events", (req, res, err) => {
+  const newEventObj = req.body
+  Event
+    .create(newEventObj)
+    .then(response => {
+      console.log("NEW EVENT OBJ", newEventObj)
+      console.log("response", response)
+      User.findOneAndUpdate({ email: newEventObj.userID }, { $push: {"events": response}})
+      .then((data) => {
+        console.log("data", data)
+      })
+      .catch(err)
+      // res.json(response)
+    })
+    .catch(err)
+})
+
 
 
 //////////////////////////////////  REGISTER  //////////////////////////////////
