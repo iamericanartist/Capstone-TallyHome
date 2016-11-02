@@ -51,7 +51,11 @@ const Home = mongoose.model("home", {
   userId: String,
   homeName: String,
   moveIn: String,
-  homeEvent: [],
+  homeEvent: [{ 
+      name: String,
+      date: String,
+      info: String
+    }],
   eventDate: Date,
 }) 
 
