@@ -24,7 +24,7 @@
 
 
       <!-- ////////////////////////////  NAVBAR  //////////////////////////// -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
       <!-- <div class="navbar navbar-default navbar-fixed-top"> -->
         <div class="container">
           
@@ -48,7 +48,7 @@
 
             <ul class="nav navbar-nav navbar-right">            <!-- Right aligned NAV content -->
               <!-- <li ng-if="statusMessage">{{statusMessage}}</li> -->
-              <li><a href="#/login">Logged in as {{email}}!</a></li>
+              <li ng-show="user"><a ng-href="#/login">Logged in as {{ user.email }}!</a></li>
             </ul>
           </div><!--/.nav-collapse -->
 

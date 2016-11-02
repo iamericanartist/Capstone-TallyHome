@@ -23,7 +23,10 @@ p  {font-size: 1.5vmax;
     line-height: 1.5;
     letter-spacing: .8px;}
 
-
+hr {
+  margin: 0px;
+  border-top: 1px dotted rgba(120,120,120,.8);
+}
 
 /* BACKGROUND SYLING */
 .wide {

@@ -57,6 +57,7 @@ const Home = mongoose.model("home", {
 
 
 /////////////////////////////////  GETS/POSTS  /////////////////////////////////
+///////////////////////////////////  HOMES  ///////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
     .find()
@@ -87,7 +88,10 @@ app.delete("/api/homes/:id", (req, res, err) => {
 app.get("/api/events", (req, res, err) =>
   Event
     .find()
-    .then(events => res.json({ events }))
+    .then(events => {
+      res.json({ events })
+      console.log("events", events);
+    })
     .catch(err)
 )
 
