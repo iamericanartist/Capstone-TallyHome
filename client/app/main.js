@@ -28,6 +28,10 @@ angular
         controller: "EditHomeCtrl",
         templateUrl: "partials/editHome.html",
       })
+      .when("/newEvent", {
+        controller: "NewEventCtrl",
+        templateUrl: "partials/newEvent.html",
+      })
       .when("/logout", {
         controller: "LogoutCtrl",
         templateUrl: "partials/logout.html",
@@ -52,7 +56,8 @@ angular
 
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
-  .controller("LoginCtrl", function ($scope, $http, $location, $localStorage, $sessionStorage) {
+  .controller("LoginCtrl", function ($scope, $http, $location, $rootScope) {
+  $scope.statusMessage = null
 
   $scope.loginUser = () => {
       const userLogin =  {
@@ -65,9 +70,10 @@ angular
         .then((response) => {
           console.log("LOGIN RESPONSE", response);
           if (response.data.user) {
-            $location.path("#/homes")            
+            $rootScope.userId = response.data.user.email    //takes email from response and adds it to the $rootScope for "cookie"-ish session
+            $location.path("#/homes")                       //redirects user to "homes.html"
           } else {
-            $scope.statusMessage = response.data.message
+            $scope.statusMessage = response.data.message    //if error, render message to user 
           }
         })
         .catch(console.error)
@@ -119,7 +125,7 @@ angular
     $scope.sendHome = () => {
 
       const home =  {
-        userId: $scope.userId,
+        userId: $rootScope.userId,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
         homeEvent: $scope.homeEvent,
@@ -168,13 +174,6 @@ angular
 
 
 
-
-
-
-
-
-
-
   ///////////////////////////  LogoutCtrl  ///////////////////////////
   .controller("LogoutCtrl", function ($scope, $http) {
     $http
@@ -189,6 +188,16 @@ angular
 
   ///////////////////////////  EditHomeCtrl  ///////////////////////////
   .controller("EditHomeCtrl", function ($scope, $http) {
+    $http
+      .get("/api/title")
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+      console.log("EDITHOME VIEW")
+  })
+
+  ///////////////////////////  NewEventCtrl  ///////////////////////////
+  .controller("NewEventCtrl", function ($scope, $http) {
     $http
       .get("/api/title")
       .then(({ data: { title }}) =>

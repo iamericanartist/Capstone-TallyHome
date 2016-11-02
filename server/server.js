@@ -97,7 +97,7 @@ app.post("/api/register", (req, res, err) => {
 
 //////////////////////////////////  LOGIN  //////////////////////////////////
 app.post("/api/login", (req, res, err) => {
-  console.log("qwerty", req.body );
+  console.log("login LOG req.body:", req.body )
   const userObj = req.body
   User
     .findOne({ email: userObj.email })
