@@ -56,7 +56,7 @@ const Home = mongoose.model("home", {
 }) 
 
 
-//////////////////////////////////  GETS/POSTS  //////////////////////////////////
+/////////////////////////////////  GETS/POSTS  /////////////////////////////////
 app.get("/api/homes", (req, res, err) =>
   Home
     .find()
@@ -83,6 +83,33 @@ app.delete("/api/homes/:id", (req, res, err) => {
 })
 
 
+//////////////////////////////////  NEWEVENT  //////////////////////////////////
+app.get("/api/events", (req, res, err) =>
+  Event
+    .find()
+    .then(events => res.json({ events }))
+    .catch(err)
+)
+
+app.post("/api/events", (req, res, err) => {
+  const newEventObj = req.body
+  Event
+    .create(newEventObj)
+    .then(response => {
+      console.log("NEW EVENT OBJ", newEventObj)
+      console.log("response", response)
+      User.findOneAndUpdate({ email: newEventObj.userID }, { $push: {"events": response}})
+      .then((data) => {
+        console.log("data", data)
+      })
+      .catch(err)
+      // res.json(response)
+    })
+    .catch(err)
+})
+
+
+
 //////////////////////////////////  REGISTER  //////////////////////////////////
 app.post("/api/register", (req, res, err) => {
   const newUserObj = req.body
@@ -97,7 +124,7 @@ app.post("/api/register", (req, res, err) => {
 
 //////////////////////////////////  LOGIN  //////////////////////////////////
 app.post("/api/login", (req, res, err) => {
-  console.log("qwerty", req.body );
+  console.log("login LOG req.body:", req.body )
   const userObj = req.body
   User
     .findOne({ email: userObj.email })
