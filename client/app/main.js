@@ -55,8 +55,16 @@ angular
 
 
 
+  ///////////////////////////  NavCtrl  ///////////////////////////
+  .controller("NavCtrl", function ($scope, $http, $localStorage) {      //add $http   //NavCtrl - index.html - only needs "title"
+    $scope.user = $localStorage.user
+})
+
+ 
+
   ///////////////////////////  LoginCtrl  ///////////////////////////
-  .controller("LoginCtrl", function ($scope, $http, $location, $rootScope) {
+  .controller("LoginCtrl", function ($scope, $http, $location, $localStorage) {
+  // $scope.$storage = $localStorage
   $scope.statusMessage = null
 
   $scope.loginUser = () => {
@@ -64,16 +72,17 @@ angular
         email: $scope.email,
         password: $scope.password
       }
-
+console.log("$localStorage pre http", $localStorage.user);
       $http
         .post("/api/login", userLogin)
         .then((response) => {
           console.log("LOGIN RESPONSE", response);
           if (response.data.user) {
-            $rootScope.userId = response.data.user.email    //takes email from response and adds it to the $rootScope for "cookie"-ish session
-            $location.path("#/homes")                       //redirects user to "homes.html"
+            $localStorage.user = response.data.user             //takes email from response and adds it to the $rootScope for "cookie"-ish session
+            console.log("$localStorage.user DURING HTTP", $localStorage.user);
+            $location.path("/homes")                            //redirects user to "homes.html"
           } else {
-            $scope.statusMessage = response.data.message    //if error, render message to user 
+            $scope.statusMessage = response.data.message        //if error, render message to user 
           }
         })
         .catch(console.error)
@@ -166,7 +175,7 @@ angular
       $scope.homeName = ""
       $scope.moveIn = ""
       $scope.homeEvent = ""
-      $scope.eventDat = ""
+      $scope.eventDate = ""
     }
     reloadPage()
   })
@@ -175,13 +184,12 @@ angular
 
 
   ///////////////////////////  LogoutCtrl  ///////////////////////////
-  .controller("LogoutCtrl", function ($scope, $http) {
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("LOGOUT VIEW")
+  .controller("LogoutCtrl", function ($scope, $http, $localStorage) {
+   $scope.logout = () => {
+      console.log("User logging out:", $localStorage.user)
+      delete $localStorage.user
+      console.log("Current user:", $localStorage.user)
+}
   })
 
 

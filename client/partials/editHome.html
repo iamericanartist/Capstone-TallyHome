@@ -1,10 +1,32 @@
 <a class="btn btn-primary btn-xs" href="/#/homes">Back To Homes</a>
 <container class="container-fluid">
   <div class="row-fluid">
-    <h1>Add Events/Edit Your Home</h1>
+    <h1>Add Home Events</h1>
 
     <!-- /////////////////////////  EDIT HOME FORM  ///////////////////////// -->
     <form ng-submit="postEditedTask()">
+
+      <div class="form-group row">
+        <label for="newEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Event:</label>
+        <div class="col-xs-9">
+          <input class="form-control inputSizing" id="newEvent-text-input" type="text" ng-model="addNewEvent" placeholder="Got a new"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="newEvent-date-input" class="col-xs-3 col-form-label newSubduedText">Move In Date</label>
+        <div class="col-xs-9">
+          <input class="form-control inputSizing" id="newEvent-date-input" type="date" ng-model="newEventDate" placeholder="11/04/2016"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="homeEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Event Type?</label>
+        <div class="col-xs-9">
+          <input class="form-control inputSizing" id="homeEvent-text-input" type="text" ng-model="homeEvent" placeholder="Moved in! / Painted kitchen / New ROOF!"/>
+        </div>
+      </div>
+
       <input type="text" ng-model="editedTask" placeholder="Get The Baby" />
       <input class="btn btn-success btn-xs" type="submit" />
     </form>
