@@ -63,24 +63,28 @@ angular
  
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
-  .controller("LoginCtrl", function ($scope, $http, $location, $localStorage) {
+  .controller("LoginCtrl", function ($scope, $http, $location, $localStorage, $route, $rootScope) {
   // $scope.$storage = $localStorage
   $scope.statusMessage = null
+  console.log("$localStorage pre http", $localStorage.user)
 
   $scope.loginUser = () => {
       const userLogin =  {
         email: $scope.email,
         password: $scope.password
       }
-console.log("$localStorage pre http", $localStorage.user);
+
       $http
         .post("/api/login", userLogin)
         .then((response) => {
-          console.log("LOGIN RESPONSE", response);
+          console.log("LOGIN RESPONSE", response)
           if (response.data.user) {
             $localStorage.user = response.data.user             //takes email from response and adds it to the $rootScope for "cookie"-ish session
-            console.log("$localStorage.user DURING HTTP", $localStorage.user);
-            $location.path("/homes")                            //redirects user to "homes.html"
+            $rootScope.user = response.data.user             //takes email from response and adds it to the $rootScope for "cookie"-ish session
+            console.log("$localStorage.user DURING HTTP", $localStorage.user)
+            $route.reload()
+            // $scope.$apply()
+            $location.path("/homes")                           //redirects user to "homes.html"
           } else {
             $scope.statusMessage = response.data.message        //if error, render message to user 
           }
@@ -128,13 +132,13 @@ console.log("$localStorage pre http", $localStorage.user);
 
 
   ///////////////////////////  HomeCtrl  ///////////////////////////
-  .controller("HomeCtrl", function ($scope, $http, $location) {      //HomeCtrl - homes.html - needs "title" and "data"
+  .controller("HomeCtrl", function ($scope, $http, $location, $route, $localStorage) {      //HomeCtrl - homes.html - needs "title" and "data"
     $scope.homes = []
 
     $scope.sendHome = () => {
 
       const home =  {
-        userId: $rootScope.userId,
+        userId: $localStorage.user._id,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
         homeEvent: $scope.homeEvent,
@@ -184,10 +188,11 @@ console.log("$localStorage pre http", $localStorage.user);
 
 
   ///////////////////////////  LogoutCtrl  ///////////////////////////
-  .controller("LogoutCtrl", function ($scope, $http, $localStorage) {
+  .controller("LogoutCtrl", function ($scope, $http, $localStorage, $location) {
    $scope.logout = () => {
       console.log("User logging out:", $localStorage.user)
       delete $localStorage.user
+      $location.path(`/home`)
       console.log("Current user:", $localStorage.user)
 }
   })
@@ -205,14 +210,14 @@ console.log("$localStorage pre http", $localStorage.user);
   })
 
   ///////////////////////////  NewEventCtrl  ///////////////////////////
-  .controller("NewEventCtrl", function ($scope, $http, $rootScope) {
+  .controller("NewEventCtrl", function ($scope, $http, $localStorage) {
     $scope.homeEvent = []
     $scope.addEvent = () => {
       const newEvent = {
-        userId: $rootScope.userId,
+        userId: $localStorage.user._id,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
-        homeEvent: $rootScope.homeEvent,                                        ///////////////////////////  This is an existing [array...]  ///////////////////////////
+        homeEvent: $localStorage.homeEvent,                                        ///////////////////////////  This is an existing [array...]  ///////////////////////////
         eventDate: $scope.eventDate,
       }
       $http
