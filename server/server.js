@@ -90,6 +90,16 @@ app.delete("/api/homes/:id", (req, res, err) => {
 })
 
 
+app.post("/api/aHome", (req, res, err) =>
+  Home
+  .findOne({_id:req.body.id})
+  .then(home => {
+    console.log("~~~~~~~home", home)
+    res.status(200).json(home)
+  })
+  .catch(err) 
+  )
+
 
 //////////////////////////////////  NEWEVENT  //////////////////////////////////
 app.get("/api/events", (req, res, err) =>
