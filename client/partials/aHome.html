@@ -49,20 +49,21 @@
       eventInfo: $scope.eventInfo -->
 
 
-    <div ng-repeat="event in events">
+    <div ng-repeat="event in home.homeEvent">
       <div class="row">
         
         <div class="col-xs-10">
-          <h4> {{eventName}}</h4>
+          <h4> {{event.eventName}}</h4>
         </div>
 
         <div class="col-xs-2">
           <button type="submit" class="btn btn-warning btn-xs removeHomeBtn" > Delete </button> <!-- ng-click="removeHome(home._id)" -->
         </div>
+
         <div class="row">
 
-          <p class="subduedText">Event Date: </p> <h6> {{eventDate}}</h6> 
-          <p class="subduedText">Wha Happen?: </p> <h6> {{eventInfo}}</h6>
+          <p class="subduedText">Event Date: </p> <h6> {{event.eventDate}}</h6>
+          <p class="subduedText">Wha Happen?: </p> <h6> {{event.eventInfo}}</h6>
 
         </div>
 
