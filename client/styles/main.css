@@ -42,7 +42,7 @@ hr {
 
 
 .tallyLogo {
-  max-width: 70%;
+  max-width: 90%;
   margin: auto;
  }
 
@@ -69,6 +69,7 @@ ul {
   color: #999999;
   margin: 0px -5px -5px;
 }
+
 .inputSizing {
   display: block;
   width: 100%;
@@ -97,7 +98,11 @@ ul {
 .newSubduedText {
   color: #999999;
 }
-
+.subduedTextCopyright {
+  margin: 0px;
+  letter-spacing: 1.5px;
+  color: rgba(50,50,50,.60);
+}
 
 /* DEFAULT COLUMN STYLING // BE CAREFUL */
 /*[class*="col-"] {
@@ -107,6 +112,10 @@ ul {
   border: 1px solid rgba(86,61,124,.2);
   border-radius: 10px;
 }*/
+
+.loginRegister{
+  margin-top: 30px;
+}
 .loginBox {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -118,6 +127,14 @@ ul {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: rgba(250, 180, 150, 0.25);
+  border: 1px solid rgba(86,61,124,.2);
+  border-radius: 10px;
+}
+
+.logoutBox {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(200, 180, 180, 0.25);
   border: 1px solid rgba(86,61,124,.2);
   border-radius: 10px;
 }

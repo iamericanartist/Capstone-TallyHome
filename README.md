@@ -44,10 +44,10 @@ This was the catalyst for **TallyHome**.
 
 
 
-## REQUIREMENTS
-1. TK
-1. TK
-1. TK
+## GOALS
+1. Create a MEAN Stack application (utilizing MongoDB, Express, AngularJS, Node.JS)
+1. Register, login, logout, and maintain session data to prevent user refresh loss of data
+1. CRUD Home, Events, and other data
 
 ## STRETCH GOALS
 1. Rate your service/appliance/provider

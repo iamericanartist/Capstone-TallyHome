@@ -1,9 +1,23 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-offset-3 col-xs-6 registerBox">
-      <h1>Register</h1>
 
+    <div class="text-center loginRegister">
+
+      <div class="row">
+        <div class="col-xs-offset-3 col-xs-6">
+          <img src="../images/TallyHomeWEBShadow.png" class="img-responsive tallyLogo" alt="TallyHomeLogo">
+        </div>
+      </div>
+
+      <h1>Start Your Own Collection!</h1>
+      <hr/>
+      <p>...of home events and/or life events in your free account! Just set up your account below and we'll keep tabs for you.</p>
+      <br/>
+    </div>
+
+    <div class="col-xs-offset-3 col-xs-6 registerBox">
+      <h3>Register</h3>
       <form ng-submit="registerUser()">     <!-- from main.js "RegisterCtrl" -->
         <div class="form-group">
           <label for="email">Email Address</label>
@@ -23,7 +37,7 @@
           <h4 ng-if="statusMessage">{{statusMessage}}</h4>
         </div>
       </form>
-
     </div>
+
   </div>
 </div>
