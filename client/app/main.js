@@ -24,13 +24,9 @@ angular
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
       })
-      .when("/editHome", {
-        controller: "EditHomeCtrl",
-        templateUrl: "partials/editHome.html",
-      })
-      .when("/newEvent", {
-        controller: "NewEventCtrl",
-        templateUrl: "partials/newEvent.html",
+      .when("/homes/:id", {
+        controller: "AHomeCtrl",
+        templateUrl: "partials/aHome.html",
       })
       .when("/logout", {
         controller: "LogoutCtrl",
@@ -164,9 +160,9 @@ angular
         .then(reloadPage())
     }
 
-    $scope.editHome = (id) => {
-      console.log("~MAIN.JS~ editHome: ", id)
-      $location.path(`/editHome/${id}`)
+    $scope.openHome = (id) => {
+      console.log("~MAIN.JS~ aHome: ", id)
+      $location.path(`/homes/${id}`)
     }
 
 
@@ -198,14 +194,14 @@ angular
 
 
 
-  ///////////////////////////  EditHomeCtrl  ///////////////////////////
-  .controller("EditHomeCtrl", function ($scope, $http) {
+  ///////////////////////////  aHomeCtrl  ///////////////////////////
+  .controller("AHomeCtrl", function ($scope, $http, $routeParams) {
+    $scope.home = null
     $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("EDITHOME VIEW")
+      .post("/api/aHome", {id:$routeParams.id})
+      .then((homeData) => )
+      .catch(console.error)
+      console.log("AHOME VIEW")
   })
 
 
