@@ -1,12 +1,111 @@
+
 <div ng-include="'/partials/nav.html'"></div>
+
+<container class="container-fluid">
+  <div class="row-fluid">
+    
+    <div class="row-fluid">
+        <h1>{{home.homename.id}} This HomeName</h1>
+
+
+        <!-- /////////////////////////  NEW EVENT FORM  ///////////////////////// -->
+        <div class="row-fluid">
+          <button data-toggle="collapse" data-target="#demo" class="btn btn-info btn-block">Add An Event!</button>
+        </div>
+
+        <div id="demo" class="collapse">
+          <div class="newHomeTextArea">
+            <div class="col-xs-12 col-sm-3 text-center">
+              <h3>Add New Event:</h3>  
+            </div>
+
+            <div class="col-xs-12 col-sm-9">
+              <form ng-submit="sendHome()">   <!-- from main.js "HomeCtrl" -->       <!-- SHOULD BE EDITHOME()???????????????????????????? -->
+
+                <!-- <div class="form-group row">
+                  <label for="homeName-text-input" class="col-xs-3 col-form-label newSubduedText">Home Name</label>
+                  <div class="col-xs-9">
+                    <input class="form-control inputSizing" id="homeName-text-input" type="text" ng-model="homeName" placeholder="My First House / 123 Main St."/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="moveIn-date-input" class="col-xs-3 col-form-label newSubduedText">Move In Date</label>
+                  <div class="col-xs-9">
+                    <input class="form-control inputSizing" id="moveIn-date-input" type="date" ng-model="moveIn" placeholder="11/04/2016"/>
+                  </div>
+                </div> -->
+
+                <div class="form-group row">
+                  <label for="homeEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Add An Event</label>
+                  <div class="col-xs-9">
+                    <input class="form-control inputSizing" id="eventName-text-input" type="text" ng-model="eventName" placeholder="Event Name? 'New Roof'"/><br>
+                    <input class="form-control inputSizing" id="moveIn-date-input"    type="date" ng-model="eventDate" placeholder="Event Date? '11/04/2016'"/><br>
+                    <input class="form-control inputSizing" id="eventInfo-text-input" type="text" ng-model="eventInfo" placeholder="Additional Info? ''"/>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="contact-form__submit">
+                    <div class="col-md-9 col-md-offset-3">
+                      <!-- <a href="#/" class="btn btn-danger btn-xs">Cancel</a> -->
+                      <input type="submit" value="Submit" class="btn btn-success btn-xs"/>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>  <!-- <div class="newHomeTextArea"> -->
+        </div>  <!-- <div id="demo" class="collapse"> -->
+
+        <p class="subduedText">Move In Date: </p> <h6> {{home.moveIn}}</h6> 
+        <p class="subduedText">Home Events: </p> <h6> {{home.homeEvent}}</h6>
+
+    </div>  <!-- <div class="row-fluid"> -->
+
+
+
+    <!-- ///////////////////////////  NG-REPEAT  /////////////////////////// -->
+    <ul>
+      <li class="homeTextArea" ng-repeat="home in homes" >
+        <a href="#/editHome" ng-click="">                                         <!-- FIX TO OPEN "SINGULAR HOME VIEW" --><!--  NEED ID#'s as part of address -->
+        <div class="row">
+          
+          <div class="col-xs-10">
+            <h4> {{home.homeName}}</h4>
+          </div>
+
+          <div class="col-xs-2">
+            <button type="submit" class="btn btn-warning btn-xs removeHomeBtn" ng-click="removeHome(home._id)"> Delete </button>
+          </div>
+
+        </div>
+        </a>
+        <hr/>
+        <p class="subduedText">Move In Date: </p> <h6> {{home.moveIn}}</h6> 
+        <p class="subduedText">Home Events: </p> <h6> {{home.homeEvent}}</h6>
+
+
+      </li>
+    </ul>
+
+  </div>
+</container>
+
+
+
+
+///////////////////////////////////  trash?  ///////////////////////////////////
+<!-- <div ng-include="'/partials/nav.html'"></div>
 
 <a class="btn btn-primary btn-xs" href="/#/homes">Back To Homes</a>
 <container class="container-fluid">
   <div class="row-fluid">
-    <h1>Add Home Events</h1>
+    <h1>Add Home Events</h1> -->
 
     <!-- /////////////////////////  EDIT HOME FORM  ///////////////////////// -->
-    <form ng-submit="postEditedTask()">
+<!--     <form ng-submit="postEditedTask()">
 
       <div class="form-group row">
         <label for="newEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Event:</label>
@@ -34,4 +133,5 @@
     </form>
 
   </div>
-</container>
+</container> -->
+

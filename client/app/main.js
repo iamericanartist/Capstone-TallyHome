@@ -1,16 +1,16 @@
 "use strict"
 
 angular
-  .module("tallyHome", ["ngRoute","ngStorage","ngMaterial"])                       //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
+  .module("tallyHome", ["ngRoute","ngStorage","ngMaterial"])  //setup "tallyHome" app //inject ["ngRoute"] to make available to controllers
 
-  .config(($routeProvider) =>  {        //add ", $locationProvider" back to implement html5mode (also see index.html)
+  .config(($routeProvider) =>  {                              //add ", $locationProvider" back to implement html5mode (also see index.html)
     // $locationProvider.html5Mode(true)
     // $locationProvider.hashPrefix = "/"
     $routeProvider
     /////////////////////////////////  ANGULAR ROUTES  /////////////////////////////////
-      .when("/", {                                        //when at "/"
-        controller: "MainCtrl",                           //use "MainCtrl" controller (below)
-        templateUrl: "partials/main.html",                //and show "main.html" partial
+      .when("/", {                                            //when at "/"
+        controller: "MainCtrl",                               //use "MainCtrl" controller (below)
+        templateUrl: "partials/main.html",                    //and show "main.html" partial
       })
       .when("/login", {
         controller: "LoginCtrl",
@@ -43,12 +43,11 @@ angular
 
 /////////////////////////////////  CONTROLLERS  /////////////////////////////////
   ///////////////////////////  MainCtrl  ///////////////////////////
-  .controller("MainCtrl", function ($scope, $http) {      //add $http   //MainCtrl - main.html - only needs "title"
-    //MAIN GET
+  .controller("MainCtrl", function ($scope, $http) {
     $http
-      .get("/api/title")                                    //app title
-      .then(({ data: { title }}) =>                         //destructured from "data"
-        $scope.title = title                                //rather than "data.data.title"
+      .get("/api/title")                                      //app title
+      .then(({ data: { title }}) =>                           //destructured from "data"
+        $scope.title = title                                  //rather than "data.data.title"
       )
       console.log("MAIN VIEW")
   })
@@ -56,7 +55,7 @@ angular
 
 
   ///////////////////////////  NavCtrl  ///////////////////////////
-  .controller("NavCtrl", function ($scope, $http, $localStorage) {      //add $http   //NavCtrl - index.html - only needs "title"
+  .controller("NavCtrl", function ($scope, $http, $localStorage) {
     $scope.user = $localStorage.user
 })
 
@@ -79,14 +78,14 @@ angular
         .then((response) => {
           console.log("LOGIN RESPONSE", response)
           if (response.data.user) {
-            $localStorage.user = response.data.user             //takes email from response and adds it to the $rootScope for "cookie"-ish session
-            $rootScope.user = response.data.user             //takes email from response and adds it to the $rootScope for "cookie"-ish session
+            $localStorage.user = response.data.user           //takes email from response and adds it to the $rootScope for "cookie"-ish session
+            $rootScope.user = response.data.user              //takes email from response and adds it to the $rootScope for "cookie"-ish session
             console.log("$localStorage.user DURING HTTP", $localStorage.user)
             $route.reload()
-            // $scope.$apply()
-            $location.path("/homes")                           //redirects user to "homes.html"
+            $location.path("/homes")                          //redirects user to "homes.html"
           } else {
-            $scope.statusMessage = response.data.message        //if error, render message to user 
+            $scope.statusMessage = response.data.message      //if error, render message to user
+            $scope.password = ""
           }
         })
         .catch(console.error)
@@ -107,7 +106,6 @@ angular
         email: $scope.email,
         password: $scope.password
       }
-      //HOMES POST
       $http
         .post("/api/register", newUser)
         .then((user) => {
@@ -132,17 +130,19 @@ angular
 
 
   ///////////////////////////  HomeCtrl  ///////////////////////////
-  .controller("HomeCtrl", function ($scope, $http, $location, $route, $localStorage) {      //HomeCtrl - homes.html - needs "title" and "data"
+  .controller("HomeCtrl", function ($scope, $http, $location, $route, $localStorage) {
     $scope.homes = []
 
     $scope.sendHome = () => {
-
       const home =  {
         userId: $localStorage.user._id,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
-        homeEvent: $scope.homeEvent,
-        eventDate: $scope.eventDate
+        homeEvent: [{
+          eventName: $scope.eventName,
+          eventDate: $scope.eventDate,
+          eventInfo: $scope.eventInfo
+        }]
       }
       $http
         .post("/api/homes", home)
@@ -186,15 +186,14 @@ angular
 
 
 
-
   ///////////////////////////  LogoutCtrl  ///////////////////////////
   .controller("LogoutCtrl", function ($scope, $http, $localStorage, $location) {
-   $scope.logout = () => {
+    $scope.logout = () => {
       console.log("User logging out:", $localStorage.user)
       delete $localStorage.user
       $location.path(`/home`)
       console.log("Current user:", $localStorage.user)
-}
+    }
   })
 
 
@@ -209,6 +208,8 @@ angular
       console.log("EDITHOME VIEW")
   })
 
+
+
   ///////////////////////////  NewEventCtrl  ///////////////////////////
   .controller("NewEventCtrl", function ($scope, $http, $localStorage) {
     $scope.homeEvent = []
@@ -217,7 +218,7 @@ angular
         userId: $localStorage.user._id,
         homeName: $scope.homeName,
         moveIn: $scope.moveIn,
-        homeEvent: $localStorage.homeEvent,                                        ///////////////////////////  This is an existing [array...]  ///////////////////////////
+        homeEvent: $localStorage.homeEvent,         ///////////////////////////  This is an existing [array...]  ///////////////////////////
         eventDate: $scope.eventDate,
       }
       $http

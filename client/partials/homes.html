@@ -3,11 +3,10 @@
 <container class="container-fluid">
   <div class="row-fluid">
     
-
     <div class="row-fluid">
         <h1>Welcome home!</h1>
 
-      <!-- /////////////////////////  NEW HOME FORM  ///////////////////////// -->
+        <!-- /////////////////////////  NEW HOME FORM  ///////////////////////// -->
         <div class="row-fluid">
           <button data-toggle="collapse" data-target="#demo" class="btn btn-info btn-block">Add A Home</button>
         </div>
@@ -19,7 +18,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-9">
-              <form ng-submit="sendHome()">           <!-- from main.js "HomeCtrl" -->
+              <form ng-submit="sendHome()">   <!-- from main.js "HomeCtrl" -->
 
                 <div class="form-group row">
                   <label for="homeName-text-input" class="col-xs-3 col-form-label newSubduedText">Home Name</label>
@@ -36,9 +35,11 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="homeEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Event Type?</label>
+                  <label for="homeEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Add An Event</label>
                   <div class="col-xs-9">
-                    <input class="form-control inputSizing" id="homeEvent-text-input" type="text" ng-model="homeEvent" placeholder="Moved in! / Painted kitchen / New ROOF!"/>
+                    <input class="form-control inputSizing" id="eventName-text-input" type="text" ng-model="eventName" placeholder="Event Name? 'New Roof'"/>
+                    <input class="form-control inputSizing" id="moveIn-date-input"    type="date" ng-model="eventDate" placeholder="Event Date? '11/04/2016'"/>
+                    <input class="form-control inputSizing" id="eventInfo-text-input" type="text" ng-model="eventInfo" placeholder="Additional Info? ''"/>
                   </div>
                 </div>
 
@@ -65,18 +66,17 @@
       <li class="homeTextArea" ng-repeat="home in homes" >
         <a href="#/editHome" ng-click="">                                         <!-- FIX TO OPEN "SINGULAR HOME VIEW" --><!--  NEED ID#'s as part of address -->
         <div class="row">
+          
           <div class="col-xs-10">
             <h4> {{home.homeName}}</h4>
           </div>
+
           <div class="col-xs-2">
-
-
-            <!-- <a type="submit" class="btn btn-primary btn-xs" ng-click="editHome(item._id)"> Edit </a> -->
-            <a type="submit" class="btn btn-danger btn-xs" name="deleteCheckbox" ng-click="removeHome(home._id)"> Delete </a>
-            
+            <button type="submit" class="btn btn-warning btn-xs removeHomeBtn" ng-click="removeHome(home._id)"> Delete </button>
           </div>
+
         </div>
-        </a>      <!-- FIX TO OPEN "SINGULAR HOME VIEW" -->
+        </a>
         <hr/>
         <p class="subduedText">Move In Date: </p> <h6> {{home.moveIn}}</h6> 
         <p class="subduedText">Home Events: </p> <h6> {{home.homeEvent}}</h6>
@@ -84,10 +84,6 @@
 
       </li>
     </ul>
-
-    <!-- <div class="row text-center">
-      <a class="btn btn-primary" href="/#/">Back to Main</a>
-    </div> -->
 
   </div>
 </container>
