@@ -138,3 +138,7 @@ ul {
   border: 1px solid rgba(86,61,124,.2);
   border-radius: 10px;
 }
+
+.eventInfo {
+  margin: -20px 10px 15px 35px;
+}

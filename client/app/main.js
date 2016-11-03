@@ -218,7 +218,11 @@ angular
       $http
         .post("/api/newEvent", newEvent)
         .then((response) => {
-          $scope.home.homeEvent.push(response.data)
+          console.log("resp.data", response.data.homeEvent[response.data.homeEvent.length -1]);
+
+          //response.data.homeEvent[response.data.homeEvent.length -1]
+          // $scope.home.homeEvent.push(response.data)
+          $scope.home.homeEvent.push(response.data.homeEvent[response.data.homeEvent.length -1])
           $scope.eventName = ""
           $scope.eventDate = ""
           $scope.eventInfo = ""
