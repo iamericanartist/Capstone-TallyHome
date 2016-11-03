@@ -5,12 +5,12 @@
   <div class="row-fluid">
     <h1>{{home.homeName}}</h1>
 
-
-    <!-- /////////////////////////  NEW EVENT FORM  ///////////////////////// -->
+    <!-- ////////////////////////  NEW EVENT BUTTON  //////////////////////// -->
     <div class="row-fluid">
       <button data-toggle="collapse" data-target="#demo" class="btn btn-info btn-block">Add An Event!</button>
     </div>
 
+    <!-- /////////////////////////  NEW EVENT FORM  ///////////////////////// -->
     <div id="demo" class="collapse">
       <div class="newHomeTextArea">
         <div class="col-xs-12 col-sm-3 text-center">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-9">
-          <form ng-submit="addEvent(home._id)">   <!-- from main.js "HomeCtrl" -->       <!-- SHOULD BE EDITHOME()???????????????????????????? -->
+          <form ng-submit="addEvent(home._id)">
 
             <div class="form-group row">
               <label for="homeEvent-text-input" class="col-xs-3 col-form-label newSubduedText">Add An Event</label>
@@ -42,31 +42,26 @@
         </div>
       </div>  <!-- <div class="newHomeTextArea"> -->
     </div>  <!-- <div id="demo" class="collapse"> -->
+    <!-- /////////////////////////  NEW EVENT FORM  ///////////////////////// -->
 
 
-      <!-- eventName: $scope.eventName,
-      eventDate: $scope.eventDate,
-      eventInfo: $scope.eventInfo -->
-
-
-    <div ng-repeat="event in home.homeEvent">
+    <div class="container" ng-repeat="event in home.homeEvent | orderBy:'-'">
       <div class="row">
         
         <div class="col-xs-10">
           <h4> {{event.eventName}}</h4>
         </div>
 
-        <div class="col-xs-2">
-          <button type="submit" class="btn btn-warning btn-xs removeHomeBtn" > Delete </button> <!-- ng-click="removeHome(home._id)" -->
+        <div class="col-xs-2 text-center">
+          <button type="submit" class="btn btn-warning btn-xs removeHomeBtn"> Delete </button> <!-- ng-click="removeHome(home._id)" -->
         </div>
+      </div>
+      
+      <br/>
 
-        <div class="row">
-
-          <p class="subduedText">Event Date: </p> <h6> {{event.eventDate}}</h6>
-          <p class="subduedText">Wha Happen?: </p> <h6> {{event.eventInfo}}</h6>
-
-        </div>
-
+      <div class="row eventInfo">
+        <p><span class="subduedText">Event Date: </span> <span>{{event.eventDate}}</span></p>
+        <p><span class="subduedText">Wha Happen?: </span> <span>{{event.eventInfo}}</span></p>
       </div>
     </div>
 
