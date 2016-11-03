@@ -102,29 +102,15 @@ app.post("/api/aHome", (req, res, err) =>
 
 
 //////////////////////////////////  NEWEVENT  //////////////////////////////////
-app.get("/api/events", (req, res, err) =>
-  Event
-    .find()
-    .then(events => {
-      res.json({ events })
-      console.log("events", events);
-    })
-    .catch(err)
-)
-app.post("/api/events", (req, res, err) => {
+app.post("/api/newEvent", (req, res, err) => {
   const newEventObj = req.body
-  Event
-    .create(newEventObj)
-    .then(response => {
-      console.log("NEW EVENT OBJ", newEventObj)
-      console.log("response", response)
-      User.findOneAndUpdate({ email: newEventObj.userID }, { $push: {"events": response}})
-      .then((data) => {
-        console.log("data", data)
-      })
-      .catch(err)
-      // res.json(response)
-    })
+  Home
+    .findByIdAndUpdate(
+        {_id: req.body.homeId},
+        {$push: {"homeEvent": req.body}},
+        {safe: true, upsert: true, new : true}
+      )
+    .then(data => {res.status(201).json(data)})
     .catch(err)
 })
 
@@ -139,6 +125,7 @@ app.post("/api/register", (req, res, err) => {
     })
     .catch(err)
 })
+
 
 
 

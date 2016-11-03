@@ -142,7 +142,10 @@ angular
       }
       $http
         .post("/api/homes", home)
-        .then(() => $scope.homes.push(home))
+        .then((dbHome) => {
+          $scope.homes.push(dbHome.data)
+          console.log("####dbHome", dbHome);
+        })
         .catch(console.error)
     }
 
@@ -195,39 +198,32 @@ angular
 
 
   ///////////////////////////  aHomeCtrl  ///////////////////////////
-  .controller("AHomeCtrl", function ($scope, $http, $routeParams) {
+  .controller("AHomeCtrl", function ($scope, $http, $routeParams, $localStorage) {
     $scope.home = null
     $http
       .post("/api/aHome", {id:$routeParams.id})
-      .then((homeData) => )
+      .then((homeData) => $scope.home = homeData.data)
       .catch(console.error)
       console.log("AHOME VIEW")
-  })
 
 
-
-  ///////////////////////////  NewEventCtrl  ///////////////////////////
-  .controller("NewEventCtrl", function ($scope, $http, $localStorage) {
-    $scope.homeEvent = []
-    $scope.addEvent = () => {
+    $scope.addEvent = (id) => {
       const newEvent = {
-        userId: $localStorage.user._id,
-        homeName: $scope.homeName,
-        moveIn: $scope.moveIn,
-        homeEvent: $localStorage.homeEvent,         ///////////////////////////  This is an existing [array...]  ///////////////////////////
+        homeId: id,
+        eventName: $scope.eventName,
         eventDate: $scope.eventDate,
+        eventInfo: $scope.eventInfo
       }
+
       $http
         .post("/api/newEvent", newEvent)
-        .then(() => $scope.homeEvent.push(newEvent))
+        .then(() => {
+          $scope.home.homeEvent.push(newEvent)
+          $scope.eventName = ""
+          $scope.eventDate = ""
+          $scope.eventInfo = ""
+        })
         .catch(console.error)
     }
-
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("NEWEVENT VIEW")
   })
 
