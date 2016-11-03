@@ -63,8 +63,8 @@
 
     <!-- ///////////////////////////  NG-REPEAT  /////////////////////////// -->
     <ul>
-      <li class="homeTextArea" ng-repeat="home in homes" >
-        <a href="#/editHome" ng-click="">                                         <!-- FIX TO OPEN "SINGULAR HOME VIEW" --><!--  NEED ID#'s as part of address -->
+      <li class="homeTextArea" ng-repeat="home in homes" ng-click="openHome(home._id)">
+        
         <div class="row">
           
           <div class="col-xs-10">
@@ -76,7 +76,6 @@
           </div>
 
         </div>
-        </a>
         <hr/>
         <p class="subduedText">Move In Date: </p> <h6> {{home.moveIn}}</h6> 
         <p class="subduedText">Home Events: </p> <h6> {{home.homeEvent}}</h6>

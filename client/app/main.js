@@ -24,13 +24,9 @@ angular
         controller: "HomeCtrl",
         templateUrl: "partials/homes.html",
       })
-      .when("/editHome", {
-        controller: "EditHomeCtrl",
-        templateUrl: "partials/editHome.html",
-      })
-      .when("/newEvent", {
-        controller: "NewEventCtrl",
-        templateUrl: "partials/newEvent.html",
+      .when("/homes/:id", {
+        controller: "AHomeCtrl",
+        templateUrl: "partials/aHome.html",
       })
       .when("/logout", {
         controller: "LogoutCtrl",
@@ -146,7 +142,10 @@ angular
       }
       $http
         .post("/api/homes", home)
-        .then(() => $scope.homes.push(home))
+        .then((dbHome) => {
+          $scope.homes.push(dbHome.data)
+          console.log("####dbHome", dbHome);
+        })
         .catch(console.error)
     }
 
@@ -164,9 +163,9 @@ angular
         .then(reloadPage())
     }
 
-    $scope.editHome = (id) => {
-      console.log("~MAIN.JS~ editHome: ", id)
-      $location.path(`/editHome/${id}`)
+    $scope.openHome = (id) => {
+      console.log("~MAIN.JS~ aHome: ", id)
+      $location.path(`/homes/${id}`)
     }
 
 
@@ -198,40 +197,33 @@ angular
 
 
 
-  ///////////////////////////  EditHomeCtrl  ///////////////////////////
-  .controller("EditHomeCtrl", function ($scope, $http) {
+  ///////////////////////////  aHomeCtrl  ///////////////////////////
+  .controller("AHomeCtrl", function ($scope, $http, $routeParams, $localStorage) {
+    $scope.home = null
     $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("EDITHOME VIEW")
-  })
+      .post("/api/aHome", {id:$routeParams.id})
+      .then((homeData) => $scope.home = homeData.data)
+      .catch(console.error)
+      console.log("AHOME VIEW")
 
 
-
-  ///////////////////////////  NewEventCtrl  ///////////////////////////
-  .controller("NewEventCtrl", function ($scope, $http, $localStorage) {
-    $scope.homeEvent = []
-    $scope.addEvent = () => {
+    $scope.addEvent = (id) => {
       const newEvent = {
-        userId: $localStorage.user._id,
-        homeName: $scope.homeName,
-        moveIn: $scope.moveIn,
-        homeEvent: $localStorage.homeEvent,         ///////////////////////////  This is an existing [array...]  ///////////////////////////
+        homeId: id,
+        eventName: $scope.eventName,
         eventDate: $scope.eventDate,
+        eventInfo: $scope.eventInfo
       }
+
       $http
         .post("/api/newEvent", newEvent)
-        .then(() => $scope.homeEvent.push(newEvent))
+        .then(() => {
+          $scope.home.homeEvent.push(newEvent)
+          $scope.eventName = ""
+          $scope.eventDate = ""
+          $scope.eventInfo = ""
+        })
         .catch(console.error)
     }
-
-    $http
-      .get("/api/title")
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-      console.log("NEWEVENT VIEW")
   })
 
