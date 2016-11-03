@@ -103,15 +103,20 @@ app.post("/api/aHome", (req, res, err) =>
 
 //////////////////////////////////  NEWEVENT  //////////////////////////////////
 app.post("/api/newEvent", (req, res, err) => {
-  const newEventObj = req.body
+  const newEventObj = Object.assign({}, req.body)
+  delete newEventObj.homeId
+  newEventObj.eventDate = Date(Date.UTC(newEventObj.eventDate.toString()))
+  console.log("$$$$$$$newEventObj", newEventObj);
   Home
     .findByIdAndUpdate(
         {_id: req.body.homeId},
-        {$push: {"homeEvent": req.body}},
+        {$push: {"homeEvent": newEventObj}},
         {safe: true, upsert: true, new : true}
       )
-    .then(data => {res.status(201).json(data)})
-    .catch(err)
+    .then(data => {res.status(201).json(data)
+      console.log("%%%%%%%data ",data );
+    })
+    .catch(console.error)
 })
 
 
