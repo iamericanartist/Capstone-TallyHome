@@ -18,12 +18,11 @@
     </a>
 </p>
 
-<hr/>
-<p align="center">
-  <a href="https://tallyhomeapp.com">
-    <img src="/client/images/TallyHomeWEBShadow.png" alt="TallyHome Logo" height="150px">
-  </a>
-</p>
+<hr/>  
+
+![TallyHomeScreencap](/client/images/TallyHomeScreen.jpg?raw=true "TallyHome Screencap")
+[Check it out at TallyHomeApp.com](http://www.tallyhomeapp.com/) soon!
+
 
 <h3 align="center"><strong>Keep track of your home's milestones. Checkout <a href="https://tallyhomeapp.com">TallyHome</a> | <a href="https://iamericanartist.github.io/">IAmEricAnArtist</a></strong></h3>
 
@@ -57,3 +56,10 @@ This was the catalyst for **TallyHome**.
 1. Warranty countdown (3 months left on washer warranty)
 1. Link to Contact information (Yelp, AngiesList, etc)
 1. Tagging and searching
+
+***
+<p align="center">
+  <a href="https://tallyhomeapp.com">
+    <img src="/client/images/TallyHomeWEBShadow.png" alt="TallyHome Logo" height="150px">
+  </a>
+</p>
