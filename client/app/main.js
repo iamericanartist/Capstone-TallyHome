@@ -203,7 +203,7 @@ angular
 
    $scope.removeEvent = (id) => {
       $http      
-        .delete(`/api/aHome/homeEvent.${id}`)                   ///////////////////////////  Needs Work!  ///////////////////////////
+        .delete(`/api/homeEvent.${id}`)                   ///////////////////////////  Needs Work!  ///////////////////////////
         .then(reloadPage())
     }
 
