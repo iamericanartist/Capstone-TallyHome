@@ -77,11 +77,9 @@ app.post("/api/homes", (req, res, err) => {
     .then(response => {res.status(201).json(response)
     })
     .catch(err)
-    console.log("~~This Home~~", newHomeObj)
 })
 app.delete("/api/homes/:id", (req, res, err) => {
   const id = req.params.id
-  console.log("||SERVER REMOVE ID: ", id)
   Home
     .find({_id: id})
     .remove({_id: id})
@@ -94,7 +92,6 @@ app.post("/api/aHome", (req, res, err) =>
   Home
   .findOne({_id:req.body.id})
   .then(home => {
-    console.log("~~~~~~~home", home)
     res.status(200).json(home)
   })
   .catch(err) 
@@ -105,8 +102,7 @@ app.post("/api/aHome", (req, res, err) =>
 app.post("/api/newEvent", (req, res, err) => {
   const newEventObj = Object.assign({}, req.body)
   delete newEventObj.homeId
-  newEventObj.eventDate = Date(Date.UTC(newEventObj.eventDate.toString()))
-  console.log("$$$$$$$newEventObj", newEventObj);
+  newEventObj.eventDate = newEventObj.eventDate.toString().split("T")[0]
   Home
     .findByIdAndUpdate(
         {_id: req.body.homeId},
@@ -114,7 +110,6 @@ app.post("/api/newEvent", (req, res, err) => {
         {safe: true, upsert: true, new : true}
       )
     .then(data => {res.status(201).json(data)
-      console.log("%%%%%%%data ",data );
     })
     .catch(console.error)
 })
@@ -136,7 +131,6 @@ app.post("/api/register", (req, res, err) => {
 
 ////////////////////////////////////  LOGIN  ////////////////////////////////////
 app.post("/api/login", (req, res, err) => {
-  console.log("login LOG req.body:", req.body )
   const userObj = req.body
   User
     .findOne({ email: userObj.email })
