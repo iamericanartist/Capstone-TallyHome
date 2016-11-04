@@ -45,7 +45,6 @@ angular
       .then(({ data: { title }}) =>                           //destructured from "data"
         $scope.title = title                                  //rather than "data.data.title"
       )
-      console.log("MAIN VIEW")
   })
 
 
@@ -59,9 +58,7 @@ angular
 
   ///////////////////////////  LoginCtrl  ///////////////////////////
   .controller("LoginCtrl", function ($scope, $http, $location, $localStorage, $route, $rootScope) {
-  // $scope.$storage = $localStorage
   $scope.statusMessage = null
-  console.log("$localStorage pre http", $localStorage.user)
 
   $scope.loginUser = () => {
       const userLogin =  {
@@ -72,11 +69,9 @@ angular
       $http
         .post("/api/login", userLogin)
         .then((response) => {
-          console.log("LOGIN RESPONSE", response)
           if (response.data.user) {
             $localStorage.user = response.data.user           //takes email from response and adds it to the $rootScope for "cookie"-ish session
             $rootScope.user = response.data.user              //takes email from response and adds it to the $rootScope for "cookie"-ish session
-            console.log("$localStorage.user DURING HTTP", $localStorage.user)
             $route.reload()
             $location.path("/homes")                          //redirects user to "homes.html"
           } else {
@@ -86,7 +81,6 @@ angular
         })
         .catch(console.error)
     }
-      console.log("LOGIN VIEW")
   })
 
 
@@ -120,7 +114,6 @@ angular
           $scope.confirmation = ""
         }
     }
-      console.log("REGISTER VIEW")
   })
 
 
@@ -144,7 +137,6 @@ angular
         .post("/api/homes", home)
         .then((dbHome) => {
           $scope.homes.push(dbHome.data)
-          console.log("####dbHome", dbHome);
         })
         .catch(console.error)
     }
@@ -154,17 +146,14 @@ angular
       .then(({ data: { homes }}) =>
         $scope.homes = homes
       )
-      console.log("HOME VIEW")
 
     $scope.removeHome = (id) => {
-      console.log("~MAIN.JS~ removeHome: ", id)
       $http
         .delete(`/api/homes/${id}`)
         .then(reloadPage())
     }
 
     $scope.openHome = (id) => {
-      console.log("~MAIN.JS~ aHome: ", id)
       $location.path(`/homes/${id}`)
     }
 
@@ -188,10 +177,8 @@ angular
   ///////////////////////////  LogoutCtrl  ///////////////////////////
   .controller("LogoutCtrl", function ($scope, $http, $localStorage, $location) {
     $scope.logout = () => {
-      console.log("User logging out:", $localStorage.user)
       delete $localStorage.user
       $location.path(`/home`)
-      console.log("Current user:", $localStorage.user)
     }
   })
 
@@ -204,7 +191,6 @@ angular
       .post("/api/aHome", {id:$routeParams.id})
       .then((homeData) => $scope.home = homeData.data)
       .catch(console.error)
-      console.log("AHOME VIEW")
 
 
     $scope.addEvent = (id) => {
@@ -219,9 +205,6 @@ angular
         .post("/api/newEvent", newEvent)
         .then((response) => {
           console.log("resp.data", response.data.homeEvent[response.data.homeEvent.length -1]);
-
-          //response.data.homeEvent[response.data.homeEvent.length -1]
-          // $scope.home.homeEvent.push(response.data)
           $scope.home.homeEvent.push(response.data.homeEvent[response.data.homeEvent.length -1])
           $scope.eventName = ""
           $scope.eventDate = ""

@@ -39,7 +39,9 @@ hr {
 .wide img {
   width:100%;
 }
-.removeHomeBtn{}
+.removeHomeBtn{
+  margin-top: 20px;
+}
 
 .tallyLogo {
   max-width: 90%;
@@ -140,5 +142,14 @@ ul {
 }
 
 .eventInfo {
-  margin: -20px 10px 15px 35px;
+  margin: -25px 10px 15px 45px;
 }
+.eventInfo p {
+  margin: 0px;
+}
+
+/*.eventCard {
+  border: 1px solid white;
+    border-radius: 5px;
+}*/
+
