@@ -72,6 +72,22 @@ app.get("/api/homes", (req, res, err) =>
 )
 app.post("/api/homes", (req, res, err) => {
   const newHomeObj = req.body
+
+
+
+
+console.log("newHomeObj1\n", newHomeObj);                                     ///////////////////////////  NEED HELP  ///////////////////////////
+// console.log("newHomeObj2\n", newHomeObj.homeEvent);   //HOMEEVENT ONLY
+// console.log("newHomeObj3", newHomeObj.homeEvent.eventDate);    // UNDEFINED
+// console.log("newHomeObj4\n", newHomeObj.homeEvent.data.eventDate);   // BREAKS
+
+// console.log("newHomeObj3", newHomeObj.homeEvent.eventDate.toString().split("T")[0]);
+
+// newHomeObj.eventDate = newHomeObj.eventDate.toString().split("T")[0]     // ~WHAT I WANT-ISH
+
+
+
+
   Home
     .create(newHomeObj)
     .then(response => {res.status(201).json(response)
@@ -114,6 +130,14 @@ app.post("/api/newEvent", (req, res, err) => {
     .catch(console.error)
 })
 
+app.delete("/api/homeEvent/:id", (req, res, err) => {
+  const id = req.params.homeEvent.id                   ///////////////////////////  Needs Work!  ///////////////////////////
+  Home
+    .find({_id: id})
+    .remove({_id: id})
+    .then(() => res.status(204))
+    .catch(err)
+})
 
 
 //////////////////////////////////  REGISTER  //////////////////////////////////

@@ -201,6 +201,12 @@ angular
         eventInfo: $scope.eventInfo
       }
 
+   $scope.removeEvent = (id) => {
+      $http      
+        .delete(`/api/homeEvent.${id}`)                   ///////////////////////////  Needs Work!  ///////////////////////////
+        .then(reloadPage())
+    }
+
       $http
         .post("/api/newEvent", newEvent)
         .then((response) => {
@@ -212,5 +218,20 @@ angular
         })
         .catch(console.error)
     }
+
+
+        ///////////////////////////  RELOADPAGE FN  ///////////////////////////
+    function reloadPage() {
+      $http
+        .get("/api/homes")
+        .then(({ data: { homes }}) => $scope.homes = homes)
+      $scope.userId = ""
+      $scope.homeName = ""
+      $scope.moveIn = ""
+      $scope.homeEvent = ""
+      $scope.eventDate = ""
+    }
+    reloadPage()
+
   })
 
